@@ -1,0 +1,28 @@
+---
+title: "Getting Started"
+description: |
+  Your first Shiny app, how to get started.
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Getting an app started begins with just a `.R` file. There are some choices to make in the beginning--a single file app or a multi-page one. Aside from personal preference, it will depend on how you like to organize your code and how large your code base might be. For this first part of the session, we will learn with a single file app.
+
+# Templates
+
+File > Shiny Web App 
+
+The `Application Name` is 
+
+
+
+
+

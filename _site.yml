@@ -1,0 +1,16 @@
+name: "intro-shiny-guide"
+title: "Intro to Shiny"
+description: |
+  Intro to Shiny
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Session One"
+      menu:
+        - text: "Getting Started"
+          href: getting_started.html
+output: distill::distill_article

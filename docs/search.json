@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-03T15:22:07-08:00"
+    },
+    {
+      "path": "getting_started.html",
+      "title": "Getting Started",
+      "description": "Your first Shiny app, how to get started.\n",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nTemplates\r\n\r\nGetting an app started begins with just a .R file. There are some choices to make in the beginning–a single file app or a multi-page one. Aside from personal preference, it will depend on how you like to organize your code and how large your code base might be. For this first part of the session, we will learn with a single file app.\r\nTemplates\r\nFile > Shiny Web App\r\nThe Application Name is\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-03T15:22:09-08:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Intro to Shiny",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-03T15:22:09-08:00"
+    }
+  ],
+  "collections": []
+}
