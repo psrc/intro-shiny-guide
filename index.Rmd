@@ -58,18 +58,26 @@ if (interactive()) {
 ## Optional
 
 <div>
-3. Turn on rainbow parenthesis. This feature is available in RStudio version 1.4 and beyond. There'll be a lot of nested parenthesis and brackets so this is a helpful visual tool to keep track of their counterparts.
+3. Turn on rainbow parenthesis. There'll be a lot of nested parenthesis and brackets so this is a helpful visual tool to keep track of their counterparts.
 
     `Tools > Global Options > Code > Display`
     ![](images/rainbow-paren.png)  
 </div>
 
+<aside>
+This feature is available in RStudio version 1.4 and beyond. 
+</aside>
+
 <div>
-4. Activate multiple Source columns. This feature is available in RStudio version 1.4 and beyond. When working with a multi-page app, having at least 2 files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
+4. Activate multiple Source columns. When working with a multi-page app, having at least 2 files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
 
     Click on the pane icon ![](images/panel-layout-icon.png). `Pane Layout... > Add Column`  
     ![](images/add-column.png)
-</div>    
+</div>  
+
+<aside>
+This feature is available in RStudio version 1.4 and beyond. 
+</aside>
 
 <div>
 5. Create a free [shinyapps.io](https://www.shinyapps.io/) account. If you want to deploy a project (non-PSRC related and not something with confidential or sensitive data), shinyapps.io  is an option.

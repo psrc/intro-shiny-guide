@@ -42,7 +42,7 @@ Before you hit `Run App` ![](images/run-app.png){width=20%} the drop down offers
 
 ## Run and Stop
 
-After clicking `Run App`, your app will be running locally and your R session is listening to the localhost. Your console will not respond.
+After clicking `Run App`, your app will be running locally and your R session will be listening to the localhost. Your console will not respond.
 
 Click on the stop sign icon ![](images/stop-app.png){width=10%} to stop your app and resume your R session. Closing your browser window or RStudio's pop-up browser does not stop the app.
 
