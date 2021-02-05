@@ -29,6 +29,7 @@ You can write from scratch or you can open a template to get a head start.
 
 ![](images/template.png){width=80%}
 
+
 # Run and Stop the app
 
 ## Viewer options
