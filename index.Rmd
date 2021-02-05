@@ -1,5 +1,8 @@
 ---
 title: "Intro to Shiny"
+output:
+  distill::distill_article:
+    toc: true
 site: distill::distill_website
 ---
 
@@ -57,32 +60,35 @@ if (interactive()) {
 
 ## Optional
 
+### Rainbow Parenthesis
 <div>
-3. Turn on rainbow parenthesis. There'll be a lot of nested parenthesis and brackets so this is a helpful visual tool to keep track of their counterparts.
+Turn on rainbow parenthesis. There'll be a lot of nested parenthesis and brackets so this is a helpful visual tool to keep track of their counterparts.
 
-    `Tools > Global Options > Code > Display`
-    ![](images/rainbow-paren.png)  
+`Tools > Global Options > Code > Display`
+![](images/rainbow-paren.png)  
 </div>
 
 <aside>
 This feature is available in RStudio version 1.4 and beyond. 
 </aside>
 
+### Multiple Source columns
 <div>
-4. Activate multiple Source columns. When working with a multi-page app, having at least 2 files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
+Activate multiple Source columns. When working with a multi-page app, having at least 2 files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
 
-    Click on the pane icon ![](images/panel-layout-icon.png). `Pane Layout... > Add Column`  
-    ![](images/add-column.png)
+Click on the pane icon ![](images/panel-layout-icon.png). `Pane Layout... > Add Column`  
+![](images/add-column.png)
 </div>  
 
 <aside>
 This feature is available in RStudio version 1.4 and beyond. 
 </aside>
 
+### shinyapps.io
 <div>
-5. Create a free [shinyapps.io](https://www.shinyapps.io/) account. If you want to deploy a project (non-PSRC related and not something with confidential or sensitive data), shinyapps.io  is an option.
+Create a free [shinyapps.io](https://www.shinyapps.io/) account. If you want to deploy a project (non-PSRC related and not something with confidential or sensitive data), shinyapps.io  is an option.
 
-    Note that deleting an account requires you to contact support@rstudio.com.
+Note that deleting an account requires you to contact support@rstudio.com.
 </div>    
 <aside>
 shinyapps.io, an app hosting service by RStudio, offers a free account option, but with limitations.
