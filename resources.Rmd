@@ -1,0 +1,24 @@
+---
+title: "Resources"
+description: |
+  An opinionated list of guides or tutorials for Shiny and helping packages
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Shiny
+
+# Visualization Packages
+
+## DT
+
+## Reactable
+
+## htmlwidgets

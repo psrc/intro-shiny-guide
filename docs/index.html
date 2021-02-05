@@ -49,65 +49,61 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  background-color: #f8f8f8; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ad0000; } /* Alert */
-code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
-code span.bn { color: #ad0000; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
-code span.ch { color: #20794d; } /* Char */
-code span.cn { color: #8f5902; } /* Constant */
-code span.co { color: #5e5e5e; } /* Comment */
-code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-code span.dt { color: #ad0000; } /* DataType */
-code span.dv { color: #ad0000; } /* DecVal */
-code span.er { color: #ad0000; } /* Error */
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #ad0000; } /* Float */
-code span.fu { color: #4758ab; } /* Function */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
 code span.im { } /* Import */
-code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
-code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
-code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
-code span.ss { color: #20794d; } /* SpecialString */
-code span.st { color: #20794d; } /* String */
-code span.va { color: #111111; } /* Variable */
-code span.vs { color: #20794d; } /* VerbatimString */
-code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny</title>
 
-  <meta property="description" itemprop="description" content="Welcome to the website. I hope you enjoy it!"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Welcome to the website. I hope you enjoy it!"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny"/>
-  <meta property="twitter:description" content="Welcome to the website. I hope you enjoy it!"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site"]}},"value":[{"type":"character","attributes":{},"value":["Intro to Shiny"]},{"type":"character","attributes":{},"value":["Welcome to the website. I hope you enjoy it!\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site"]}},"value":[{"type":"character","attributes":{},"value":["Intro to Shiny"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2052,7 +2048,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Intro to Shiny","description":"Welcome to the website. I hope you enjoy it!","authors":[]}
+{"title":"Intro to Shiny","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2060,11 +2056,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
+<a class="logo" href="https://psrc.github.io/r-basics-I/">
+<img src="images/RegionalGem2016.png" alt="Logo"/>
+</a>
 <a href="index.html" class="title">Intro to Shiny</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
 <a href="index.html">Home</a>
-<a href="about.html">About</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Session One
@@ -2075,6 +2074,8 @@ Session One
 <a href="getting_started.html">Getting Started</a>
 </div>
 </div>
+<a href="">Session Two</a>
+<a href="resources.html">Resources</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2087,11 +2088,73 @@ Session One
 <h1>Intro to Shiny</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Welcome to the website. I hope you enjoy it!</p></p>
+
 </div>
 
 
 <div class="d-article">
+<div>
+<p>Shiny is a package that easily allows you to build interactive web applications. Web development skills aren’t required–all you need is R!</p>
+<p>In this two part module, we’ll walk through how to get started, peek inside the anatomy of a Shiny app, and incorporate packages (from previous modules and some new ones!) to build a polished product.</p>
+</div>
+<aside>
+<img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/shiny.png" style="width:100.0%" />
+</aside>
+<h1 id="pre-work">Pre-work</h1>
+<ol type="1">
+<li>Install the following packages by running the following code snippet in the console of your RStudio IDE. Ignore any warnings regarding <code>Rtools</code> and if you are asked to install from sources which needs compilation, click ‘No’.</li>
+</ol>
+<aside>
+Some may have already been installed from previous modules. You can adapt the code snippet accordingly.
+</aside>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"shiny"</span>, <span class='st'>"shinythemes"</span>, <span class='st'>"DT"</span>, <span class='st'>"here"</span>, <span class='st'>"rsconnect"</span>, 
+                   <span class='st'>"tidyverse"</span>, <span class='st'>"scales"</span>, <span class='st'>"plotly"</span>, <span class='st'>"data.table"</span>, <span class='st'>"sf"</span>, <span class='st'>"leaflet"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Test to make sure Shiny works by copying and pasting the code snippet into the console of the RStudio IDE.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://shiny.rstudio.com'>shiny</a></span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
+    <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"variable"</span>, <span class='st'>"Variable:"</span>,
+                  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Cylinders"</span> <span class='op'>=</span> <span class='st'>"cyl"</span>,
+                    <span class='st'>"Transmission"</span> <span class='op'>=</span> <span class='st'>"am"</span>,
+                    <span class='st'>"Gears"</span> <span class='op'>=</span> <span class='st'>"gear"</span><span class='op'>)</span><span class='op'>)</span>,
+      <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='va'>output</span><span class='op'>$</span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://shiny.rstudio.com/reference/shiny/latest/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
+        <span class='va'>mtcars</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>variable</span><span class='op'>)</span>, drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span>
+      <span class='op'>}</span>, rownames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+    <span class='op'>}</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<div>
+<ol start="3" type="1">
+<li><p><strong>Optional</strong>: Turn on rainbow parenthesis. This feature is available in RStudio version 1.4 and beyond. There’ll be a lot of nested parenthesis and brackets so this is a helpful visual tool to keep track of their counterparts.</p>
+<p><code>Tools &gt; Global Options &gt; Code &gt; Display</code> <img src="images/rainbow-paren.png" style="width:60.0%" /><br />
+</p></li>
+</ol>
+</div>
+<div>
+<ol start="4" type="1">
+<li><p><strong>Optional</strong>: Create a <a href="https://www.shinyapps.io/">shinyapps.io</a> account. If you want to deploy a project (non-PSRC related and not something with confidential or sensitive data), shinyapps.io is an option.</p>
+<p>Note that deleting an account requires you to contact <a href="mailto:support@rstudio.com" class="email">support@rstudio.com</a>.</p></li>
+</ol>
+</div>
+<aside>
+shinyapps.io, an app hosting service by RStudio, offers a free account option, but with limited bandwidth.
+</aside>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
