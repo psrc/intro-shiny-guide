@@ -1,5 +1,6 @@
 name: "intro-shiny-guide"
 title: "Intro to Shiny"
+theme: theme.css
 description: |
   Intro to Shiny
 output_dir: "docs"
@@ -11,6 +12,8 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Pre-work"
+      href: prework.html
     - text: "Session One"
       menu:
         - text: "Getting Started"

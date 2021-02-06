@@ -16,7 +16,7 @@ library(here)
 opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-Getting an app started begins with just a `.R` file. There are some choices to make in the beginning: a single file app or a multi-page one. Aside from personal preference, it will depend on how you like to organize your code and how much code there will be. For this first part of the session, we will learn with a single file app.
+Getting an app started begins with just a `.R` file. There are some choices to make in the beginning: a single file app or a multi-page one. It will depend on how you like to organize your code, how much code there will be, and the number of collaborators for the app. For this first part of the session, we will learn with a single file app.
 
 # Templates
 
@@ -30,7 +30,7 @@ You can write from scratch or you can open a template to get a head start.
 ![](images/template.png){width=80%}
 
 
-# Run and Stop the app
+# Operating the app
 
 ## Viewer options
 
@@ -44,9 +44,13 @@ Before you hit `Run App` ![](images/run-app.png){width=20%} the drop down offers
 
 After clicking `Run App`, your app will be running locally and your R session will be listening to the localhost. Your console will not respond.
 
-Click on the stop sign icon ![](images/stop-app.png){width=10%} to stop your app and resume your R session. Closing your browser window or RStudio's pop-up browser does not stop the app.
+Click on the stop sign icon ![](images/stop-app.png){width=10%} to stop your app and resume your R session. If running externally, closing your default browser window does not stop the app.
 
+# File Name
 
+The file name when using a **single file app must be called `app.R` in order to deploy properly**. 
+
+For teaching and learning purposes, the files provided for this module will use a different naming system to show app development at different stages. 
 
 
 
