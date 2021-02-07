@@ -15,10 +15,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Shiny
 
+**[Shiny Gallery's Shiny Demo](https://shiny.rstudio.com/gallery/#demos)**: interactive examples of various Shiny features (individual widgets, layout styles, and reactivity). The source code is displayed as you interact with the examples. It's a great way to learn! 
+
+**[Official Cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/shiny.pdf)**: A two-pager of Shiny utilities. 
+
 # Visualization Packages
 
 ## DT
 
+### Other htmlwidgets
+
 ## Reactable
 
-## htmlwidgets

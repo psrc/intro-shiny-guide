@@ -18,6 +18,8 @@ navbar:
       menu:
         - text: "Getting Started"
           href: getting_started.html
+        - text: "Shiny Anatomy"
+          href: anatomy.html
     - text: "Session Two"
       href: ""
     - text: "Resources"

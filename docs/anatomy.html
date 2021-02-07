@@ -84,26 +84,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Intro to Shiny: Pre-work</title>
+  <title>Intro to Shiny: Shiny Anatomy</title>
 
+  <meta property="description" itemprop="description" content="A new article created using the Distill format."/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Intro to Shiny: Pre-work"/>
+  <meta property="og:title" content="Intro to Shiny: Shiny Anatomy"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A new article created using the Distill format."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Intro to Shiny: Pre-work"/>
+  <meta property="twitter:title" content="Intro to Shiny: Shiny Anatomy"/>
+  <meta property="twitter:description" content="A new article created using the Distill format."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Pre-work"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Shiny Anatomy"]},{"type":"character","attributes":{},"value":["A new article created using the Distill format.\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2382,7 +2385,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Pre-work","authors":[]}
+{"title":"Shiny Anatomy","description":"A new article created using the Distill format.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2421,111 +2424,14 @@ Session One
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Pre-work</h1>
+<h1>Shiny Anatomy</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>A new article created using the Distill format.</p></p>
 </div>
 
 
 <div class="d-article">
-<div class="d-contents d-contents-float">
-<nav class="l-text toc figcaption" id="TOC">
-<h3>Contents</h3>
-<ul>
-<li><a href="#session-files-on-local-drive">Session Files on Local Drive</a>
-<ul>
-<li><a href="#open-.rproj">Open .Rproj</a></li>
-</ul></li>
-<li><a href="#install">Install</a></li>
-<li><a href="#test">Test</a></li>
-<li><a href="#optional">Optional</a>
-<ul>
-<li><a href="#rainbow-parenthesis">Rainbow Parenthesis</a></li>
-<li><a href="#multiple-source-columns">Multiple Source columns</a></li>
-<li><a href="#shinyapps.io">shinyapps.io</a></li>
-</ul></li>
-</ul>
-</nav>
-</div>
-<p>R and the RStudio IDE are required. See the first module on <a href="https://psrc.github.io/r-basics-I/00-index.html">R Basics</a> for guidance.</p>
-<h1 id="session-files-on-local-drive">Session Files on Local Drive</h1>
-<p>Make sure that the directory of files for the sessions are copied onto your local drive. If they are on PSRC’s network, you may experience extreme sluggishness when using a <code>.Rproj</code> file.</p>
-<h2 id="open-.rproj">Open .Rproj</h2>
-<p>In the RStudio IDE, open the <code>intro-shiny.Rproj</code> file. Project files will automatically set our working directory–in this case, the root of the <code>intro-shiny</code> directory. No need for <code>setwd()</code> and dealing with file paths!</p>
-<p><img src="images/rproj.png" /></p>
-<p>After opening the <code>.Rproj</code> file, you’ll see some changes to your IDE. Your console and <code>Files</code> pane will reflect the new working directory, and the project name is listed in the top right corner.</p>
-<p><img src="images/rproj-changes.png" /> To close out of the project, click the project name at the top right corner and select <code>Close Project</code>. On the day of the session, you can access the dropdown in that area of the IDE and select <code>intro-shiny</code>.</p>
-<div class="adjacent-image">
-<div class="image-left">
-<p><img src="images/rproj-close.png" /></p>
-</div>
-<div>
-<p><img src="images/rproj-open.png" /></p>
-</div>
-</div>
-<h1 id="install">Install</h1>
-<p>Install the following packages by running the following code snippet in the console of your RStudio IDE. Ignore any warnings regarding <code>Rtools</code> and if you are asked to install from sources which needs compilation, click ‘No’.</p>
-<aside>
-Some may have already been installed from previous modules. You can adapt the code snippet accordingly.
-</aside>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"shiny"</span>, <span class='st'>"shinythemes"</span>, <span class='st'>"DT"</span>, <span class='st'>"here"</span>, <span class='st'>"rsconnect"</span>, 
-                   <span class='st'>"tidyverse"</span>, <span class='st'>"scales"</span>, <span class='st'>"plotly"</span>, <span class='st'>"data.table"</span>, <span class='st'>"sf"</span>, <span class='st'>"leaflet"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<h1 id="test">Test</h1>
-<p>Test to make sure Shiny works by copying and pasting the code snippet into the console of the RStudio IDE.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
-<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>
-    <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"variable"</span>, <span class='st'>"Variable:"</span>,
-                  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Cylinders"</span> <span class='op'>=</span> <span class='st'>"cyl"</span>,
-                    <span class='st'>"Transmission"</span> <span class='op'>=</span> <span class='st'>"am"</span>,
-                    <span class='st'>"Gears"</span> <span class='op'>=</span> <span class='st'>"gear"</span><span class='op'>)</span><span class='op'>)</span>,
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>
-    <span class='op'>)</span>,
-    <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
-      <span class='va'>output</span><span class='op'>$</span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
-        <span class='va'>mtcars</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mpg"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>variable</span><span class='op'>)</span>, drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span>
-      <span class='op'>}</span>, rownames <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-    <span class='op'>}</span>
-  <span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
-</div>
-</div>
-<h1 id="optional">Optional</h1>
-<h2 id="rainbow-parenthesis">Rainbow Parenthesis</h2>
-<div>
-<p>Turn on rainbow parenthesis. There’ll be a lot of nested parenthesis and brackets so this is a helpful visual tool to keep track of their counterparts.</p>
-<p><code>Tools &gt; Global Options &gt; Code &gt; Display</code> <img src="images/rainbow-paren.png" /></p>
-</div>
-<aside>
-This feature is available in RStudio version 1.4 and above.
-</aside>
-<h2 id="multiple-source-columns">Multiple Source columns</h2>
-<div>
-<p>Activate multiple Source columns. When working with a multi-page app, having 2 or more files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.</p>
-<p>Click on the pane icon <img src="images/panel-layout-icon.png" />. <code>Pane Layout... &gt; Add Column</code><br />
-<img src="images/add-column.png" /></p>
-</div>
-<aside>
-This feature is available in RStudio version 1.4 and above.
-</aside>
-<h2 id="shinyapps.io">shinyapps.io</h2>
-<div>
-<p>Create a free <a href="https://www.shinyapps.io/">shinyapps.io</a> account. If you want to deploy a project (non-PSRC related and not something with confidential or sensitive data), shinyapps.io is an option.</p>
-<p>Note that deleting an account requires you to contact <a href="mailto:support@rstudio.com" class="email">support@rstudio.com</a>.</p>
-</div>
-<aside>
-shinyapps.io, an app hosting service by RStudio, offers a free account option, but with limitations.
-</aside>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

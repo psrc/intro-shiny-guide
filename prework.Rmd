@@ -22,7 +22,7 @@ In the RStudio IDE, open the `intro-shiny.Rproj` file. Project files will automa
 
 ![](images/rproj.png)
 
-After opening the `.Rproj` file, you'll see some like changes to your IDE. Your console and `Files` pane will reflect the new working directory, and the project name is listed in the top right corner.
+After opening the `.Rproj` file, you'll see some changes to your IDE. Your console and `Files` pane will reflect the new working directory, and the project name is listed in the top right corner.
 
 ![](images/rproj-changes.png)
 To close out of the project, click the project name at the top right corner and select `Close Project`. On the day of the session, you can access the dropdown in that area of the IDE and select `intro-shiny`.
@@ -89,7 +89,7 @@ This feature is available in RStudio version 1.4 and above.
 
 ## Multiple Source columns
 <div>
-Activate multiple Source columns. When working with a multi-page app, having at least 2 files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
+Activate multiple Source columns. When working with a multi-page app, having 2 or more files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
 
 Click on the pane icon ![](images/panel-layout-icon.png). `Pane Layout... > Add Column`  
 ![](images/add-column.png)
