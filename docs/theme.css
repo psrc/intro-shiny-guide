@@ -87,12 +87,16 @@ d-appendix {
   padding-right: 1.5rem;
 }
 
-.intro-logo img {
+.intro-logo img,
+.adjacent-image img {
   width: 100%;
 }
 
-.session-outline {
+.adjacent-image {
   display: flex;
   justify-content: space-between;
-  
+}
+
+.image-left {
+  padding-right: 1.5rem;
 }
