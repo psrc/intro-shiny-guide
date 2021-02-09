@@ -13,6 +13,18 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 A Shiny app generally consists of three parts: the **user interface** (UI), the **server**, and a place for **global** variables.
 
+# global
+
+In a single file app, packages and global variables can be loaded at the top of the script.
+
+```{r}
+library(shiny)
+library(tidyverse)
+library(here)
+
+df <- read_csv(here('data', 'babynames.csv'))
+```
+
 # UI
 
 The UI is comprised of R functions that will ultimately generate HTML--a markup language that structures and presents content for the web.   
@@ -55,6 +67,8 @@ ui <- fluidPage(
 ```
 
 # Server
+
+## Render
 
 For every `*Output()` there is a `render*()` in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.
 

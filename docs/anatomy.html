@@ -2433,24 +2433,40 @@ Session One
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#global">global</a></li>
 <li><a href="#ui">UI</a>
 <ul>
 <li><a href="#outputs">Outputs</a></li>
 </ul></li>
-<li><a href="#server">Server</a></li>
+<li><a href="#server">Server</a>
+<ul>
+<li><a href="#render">Render</a></li>
+</ul></li>
 <li><a href="#inputs">Inputs</a></li>
 </ul>
 </nav>
 </div>
 <p>A Shiny app generally consists of three parts: the <strong>user interface</strong> (UI), the <strong>server</strong>, and a place for <strong>global</strong> variables.</p>
+<h1 id="global">global</h1>
+<p>In a single file app, packages and global variables can be loaded at the top of the script.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span>
+
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data'</span>, <span class='st'>'babynames.csv'</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <h1 id="ui">UI</h1>
 <p>The UI is comprised of R functions that will ultimately generate HTML–a markup language that structures and presents content for the web.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   <span class='co'># static elements in the UI</span>
-  <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
-  <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Source:"</span>, 
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span><span class='st'>"Source:"</span>, 
     <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
            <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>)</span>
@@ -2471,28 +2487,29 @@ Session One
 <p>Functions ending in <code>*Output()</code>, creates space(s) in the UI for R outputs. However, the UI can’t process and display R output by itself, it requires help from the server.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   
-  <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
-  <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Source:"</span>, 
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span><span class='st'>"Source:"</span>, 
     <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
            <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>,
   
   <span class='co'># a place to display our data frame as a table. Its ID is 'main_table'</span>
-  <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
   
 <span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <h1 id="server">Server</h1>
+<h2 id="render">Render</h2>
 <p>For every <code>*Output()</code> there is a <code>render*()</code> in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
   
   <span class='co'># render the r object `df` to the space called, 'main_table'.</span>
-  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'>renderTable</span><span class='op'>(</span><span class='op'>{</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
     <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
 <span class='op'>}</span>
@@ -2503,19 +2520,19 @@ Session One
 <h1 id="inputs">Inputs</h1>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   
-    <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
-    <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Source:"</span>, 
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span><span class='st'>"Source:"</span>, 
       <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
              <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>,
     
     <span class='co'># A place to enter a name</span>
-    <span class='fu'>textInput</span><span class='op'>(</span><span class='st'>"name"</span>, 
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textInput.html'>textInput</a></span><span class='op'>(</span><span class='st'>"name"</span>, 
               label <span class='op'>=</span> <span class='st'>"Enter name"</span>,
               placeholder <span class='op'>=</span> <span class='st'>"Jane"</span><span class='op'>)</span>,
     
-    <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
   
 <span class='op'>)</span>
 </code></pre>
@@ -2523,21 +2540,21 @@ Session One
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   
-    <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
-    <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Source:"</span>, 
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span><span class='st'>"Source:"</span>, 
       <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
              <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>,
     
-    <span class='fu'>textInput</span><span class='op'>(</span><span class='st'>"name"</span>, 
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textInput.html'>textInput</a></span><span class='op'>(</span><span class='st'>"name"</span>, 
               label <span class='op'>=</span> <span class='st'>"Enter name"</span>,
               placeholder <span class='op'>=</span> <span class='st'>"Jane"</span><span class='op'>)</span>,
     
     <span class='co'># Display the name that was entered in textInput</span>
-    <span class='fu'>textOutput</span><span class='op'>(</span><span class='st'>"name_entered"</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"name_entered"</span><span class='op'>)</span>,
     
-    <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
   
 <span class='op'>)</span>
 </code></pre>
@@ -2548,11 +2565,11 @@ Session One
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
   
   <span class='co'># render the textInput to the designated output</span>
-  <span class='va'>output</span><span class='op'>$</span><span class='va'>name_entered</span> <span class='op'>&lt;-</span> <span class='fu'>renderText</span><span class='op'>(</span><span class='op'>{</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>name_entered</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
     <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"You entered:"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span><span class='op'>)</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
   
-  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'>renderTable</span><span class='op'>(</span><span class='op'>{</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
     <span class='va'>df</span> <span class='op'>%&gt;%</span> <span class='fu'>slice</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>
     <span class='op'>}</span><span class='op'>)</span>
   
