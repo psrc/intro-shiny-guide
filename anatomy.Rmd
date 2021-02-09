@@ -41,26 +41,91 @@ Functions ending in `*Output()`, creates space(s) in the UI for R outputs. Howev
 
 ```{r}
 ui <- fluidPage(
+  
   titlePanel("U.S. Baby Names"),
   p("Source:", 
     tags$a(href = "https://www.ssa.gov/oact/babynames/limits.html", 
            "Social Security Administration")),
+  
   # a place to display our data frame as a table. Its ID is 'main_table'
   tableOutput("main_table")
+  
 )
 
 ```
 
-`*Output()` and `render*()` work as pairs, connected by the unique name of the output, to add R output to the UI.
-
 # Server
+
+For every `*Output()` there is a `render*()` in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.
 
 ```{r}
 server <- function(input, output) {
+  
   # render the r object `df` to the space called, 'main_table'.
-  output$main_table <- renderTable({head(df)})
+  output$main_table <- renderTable({
+    df %>% slice(1:20)
+    })
 }
 ```
+
+The server is one large function. `output` is inherent in Shiny--it is a list-like object with code required to update each output object.
+
+# Inputs
+
+```{r}
+ui <- fluidPage(
+  
+    titlePanel("U.S. Baby Names"),
+    p("Source:", 
+      tags$a(href = "https://www.ssa.gov/oact/babynames/limits.html", 
+             "Social Security Administration")),
+    
+    # A place to enter a name
+    textInput("name", 
+              label = "Enter name",
+              placeholder = "Jane"),
+    
+    tableOutput("main_table")
+  
+)
+```
+
+```{r}
+ui <- fluidPage(
+  
+    titlePanel("U.S. Baby Names"),
+    p("Source:", 
+      tags$a(href = "https://www.ssa.gov/oact/babynames/limits.html", 
+             "Social Security Administration")),
+    
+    textInput("name", 
+              label = "Enter name",
+              placeholder = "Jane"),
+    
+    # Display the name that was entered in textInput
+    textOutput("name_entered"),
+    
+    tableOutput("main_table")
+  
+)
+```
+
+```{r}
+server <- function(input, output) {
+  
+  # render the textInput to the designated output
+  output$name_entered <- renderText({
+    print(c("You entered:", input$name))
+  })
+  
+  output$main_table <- renderTable({
+    df %>% slice(1:20)
+    })
+  
+   
+}
+```
+
 
 
 
