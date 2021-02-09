@@ -49,64 +49,62 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  background-color: #f8f8f8; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Shiny Anatomy</title>
 
-  <meta property="description" itemprop="description" content="A new article created using the Distill format."/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Shiny Anatomy"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="A new article created using the Distill format."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Shiny Anatomy"/>
-  <meta property="twitter:description" content="A new article created using the Distill format."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Shiny Anatomy"]},{"type":"character","attributes":{},"value":["A new article created using the Distill format.\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Shiny Anatomy"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2385,7 +2383,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Shiny Anatomy","description":"A new article created using the Distill format.","authors":[]}
+{"title":"Shiny Anatomy","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2427,11 +2425,74 @@ Session One
 <h1>Shiny Anatomy</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A new article created using the Distill format.</p></p>
+
 </div>
 
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#ui">UI</a>
+<ul>
+<li><a href="#outputs">Outputs</a></li>
+</ul></li>
+<li><a href="#server">Server</a></li>
+</ul>
+</nav>
+</div>
+<p>A Shiny app generally consists of three parts: the <strong>user interface</strong> (UI), the <strong>server</strong>, and a place for <strong>global</strong> variables.</p>
+<h1 id="ui">UI</h1>
+<p>The UI is comprised of R functions that will ultimately generate HTML–a markup language that structures and presents content for the web.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+  <span class='co'># static elements in the UI</span>
+  <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
+  <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Source:"</span>, 
+    <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
+           <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Store elements of your UI inside <code>fluidPage()</code> separated by commas. You can use any of the following:</p>
+<ul>
+<li>Pre-set Shiny UI functions (e.g. <code>titlePanel()</code>, <code>fluidRow()</code>)</li>
+<li>Reference HTML tags using <code>tag$</code> as a prefix (e.g <code>tag$img()</code>).
+<ul>
+<li>For a list of HTML tags: <code>names(tags)</code></li>
+<li>The most common tags are functions themselves and don’t require the prefix (e.g. <code>p()</code>, <code>h1()</code>, etc.)</li>
+</ul></li>
+<li>raw HTML within the wrapper <code>html()</code></li>
+</ul>
+<h2 id="outputs">Outputs</h2>
+<p>Functions ending in <code>*Output()</code>, creates space(s) in the UI for R outputs. However, the UI can’t process and display R output by itself, it requires help from the server.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+  <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
+  <span class='fu'>p</span><span class='op'>(</span><span class='st'>"Source:"</span>, 
+    <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
+           <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>,
+  <span class='co'># a place to display our data frame as a table. Its ID is 'main_table'</span>
+  <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"main_table"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><code>*Output()</code> and <code>render*()</code> work as pairs, connected by the unique name of the output, to add R output to the UI.</p>
+<h1 id="server">Server</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># render the r object `df` to the space called, 'main_table'.</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'>renderTable</span><span class='op'>(</span><span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span><span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
