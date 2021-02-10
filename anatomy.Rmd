@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 A Shiny app generally consists of three parts: the **user interface** (UI), the **server**, and a place for **global** variables.
 
-# global
+# Global
 
 In a single file app, packages and global variables can be loaded at the top of the script.
 
@@ -25,12 +25,13 @@ library(here)
 df <- read_csv(here('data', 'babynames.csv'))
 ```
 
-# UI
+# UI & Server
 
 The UI is comprised of R functions that will ultimately generate HTML--a markup language that structures and presents content for the web.   
 
 ```{r}
 ui <- fluidPage(
+  
   # static elements in the UI
   titlePanel("U.S. Baby Names"),
   p("Source:", 
@@ -39,17 +40,17 @@ ui <- fluidPage(
 )
 ```
 
-Store elements of your UI inside `fluidPage()` separated by commas. You can use any of the following:  
+Store elements of your UI inside `fluidPage()` separated by commas. You can use any of the following methods to build the UI:  
   
-  - Pre-set Shiny UI functions (e.g. `titlePanel()`, `fluidRow()`)
+  - Shiny UI functions (e.g. `titlePanel()`)
   - Reference HTML tags using `tag$` as a prefix (e.g `tag$img()`). 
     - For a list of HTML tags: `names(tags)`
     - The most common tags are functions themselves and don't require the prefix (e.g. `p()`, `h1()`, etc.)
   - raw HTML within the wrapper `html()`
   
-## Outputs
+## Outputs & Render
 
-Functions ending in `*Output()`, creates space(s) in the UI for R outputs. However, the UI can't process and display R output by itself, it requires help from the server.  
+Functions ending in `*Output()`, creates space(s) in the UI for R outputs, such as tables and plots. However, the UI can't process and display R output by itself. It requires help from the server.  
 
 ```{r}
 ui <- fluidPage(
@@ -66,11 +67,7 @@ ui <- fluidPage(
 
 ```
 
-# Server
-
-## Render
-
-For every `*Output()` there is a `render*()` in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.
+For every `*Output()` there must be a compatible `render*()` in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.
 
 ```{r}
 server <- function(input, output) {
@@ -82,9 +79,15 @@ server <- function(input, output) {
 }
 ```
 
-The server is one large function. `output` is inherent in Shiny--it is a list-like object with code required to update each output object.
+The server is one large function that passes in `input`s and `output`s (and depending on what you're doing, a `session` argument). `output` is inherent in Shiny--it is a list-like object referencing the outputs in the UI and additional code required to update each output object[^1].
 
-# Inputs
+[^1]: [https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/)
+
+## Inputs
+
+What makes Shiny interactive are inputs. Input widgets such as text boxes, checkboxes, dropdown menus, buttons, and [many others](https://shiny.rstudio.com/gallery/widget-gallery.html), collect values from the user.
+
+Similar to `*Output()`, inputs also require a unique name. The unique `inputID` is what connects the front-end to the back-end. 
 
 ```{r}
 ui <- fluidPage(
@@ -94,7 +97,7 @@ ui <- fluidPage(
       tags$a(href = "https://www.ssa.gov/oact/babynames/limits.html", 
              "Social Security Administration")),
     
-    # A place to enter a name
+    # A text box to enter a name. Its ID is 'name'.
     textInput("name", 
               label = "Enter name",
               placeholder = "Jane"),
@@ -103,6 +106,8 @@ ui <- fluidPage(
   
 )
 ```
+
+In this example, we collect the user's input value from `textInput()` and display it in the output area called `name_entered`. 
 
 ```{r}
 ui <- fluidPage(
@@ -123,6 +128,8 @@ ui <- fluidPage(
   
 )
 ```
+
+Server-side, reference the input value with `input$` as a prefix and the unique name of the input widget. `input` like `output` is inherent to Shiny. It is a list-like object containing all inputIDs from the UI.
 
 ```{r}
 server <- function(input, output) {

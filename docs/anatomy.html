@@ -2407,7 +2407,9 @@ Session One
 </button>
 <div class="nav-dropdown-content">
 <a href="getting_started.html">Getting Started</a>
-<a href="anatomy.html">Shiny Anatomy</a>
+<a href="anatomy.html">Anatomy, Inputs &amp; Outputs</a>
+<a href="layout.html">Layout</a>
+<a href="reactivity.html">Reactivity</a>
 </div>
 </div>
 <a href="">Session Two</a>
@@ -2433,21 +2435,17 @@ Session One
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#global">global</a></li>
-<li><a href="#ui">UI</a>
+<li><a href="#global">Global</a></li>
+<li><a href="#ui-server">UI &amp; Server</a>
 <ul>
-<li><a href="#outputs">Outputs</a></li>
-</ul></li>
-<li><a href="#server">Server</a>
-<ul>
-<li><a href="#render">Render</a></li>
-</ul></li>
+<li><a href="#outputs-render">Outputs &amp; Render</a></li>
 <li><a href="#inputs">Inputs</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
 <p>A Shiny app generally consists of three parts: the <strong>user interface</strong> (UI), the <strong>server</strong>, and a place for <strong>global</strong> variables.</p>
-<h1 id="global">global</h1>
+<h1 id="global">Global</h1>
 <p>In a single file app, packages and global variables can be loaded at the top of the script.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2459,11 +2457,12 @@ Session One
 </code></pre>
 </div>
 </div>
-<h1 id="ui">UI</h1>
+<h1 id="ui-server">UI &amp; Server</h1>
 <p>The UI is comprised of R functions that will ultimately generate HTML–a markup language that structures and presents content for the web.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  
   <span class='co'># static elements in the UI</span>
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"U.S. Baby Names"</span><span class='op'>)</span>,
   <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>p</a></span><span class='op'>(</span><span class='st'>"Source:"</span>, 
@@ -2473,9 +2472,9 @@ Session One
 </code></pre>
 </div>
 </div>
-<p>Store elements of your UI inside <code>fluidPage()</code> separated by commas. You can use any of the following:</p>
+<p>Store elements of your UI inside <code>fluidPage()</code> separated by commas. You can use any of the following methods to build the UI:</p>
 <ul>
-<li>Pre-set Shiny UI functions (e.g. <code>titlePanel()</code>, <code>fluidRow()</code>)</li>
+<li>Shiny UI functions (e.g. <code>titlePanel()</code>)</li>
 <li>Reference HTML tags using <code>tag$</code> as a prefix (e.g <code>tag$img()</code>).
 <ul>
 <li>For a list of HTML tags: <code>names(tags)</code></li>
@@ -2483,8 +2482,8 @@ Session One
 </ul></li>
 <li>raw HTML within the wrapper <code>html()</code></li>
 </ul>
-<h2 id="outputs">Outputs</h2>
-<p>Functions ending in <code>*Output()</code>, creates space(s) in the UI for R outputs. However, the UI can’t process and display R output by itself, it requires help from the server.</p>
+<h2 id="outputs-render">Outputs &amp; Render</h2>
+<p>Functions ending in <code>*Output()</code>, creates space(s) in the UI for R outputs, such as tables and plots. However, the UI can’t process and display R output by itself. It requires help from the server.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2501,9 +2500,7 @@ Session One
 </code></pre>
 </div>
 </div>
-<h1 id="server">Server</h1>
-<h2 id="render">Render</h2>
-<p>For every <code>*Output()</code> there is a <code>render*()</code> in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.</p>
+<p>For every <code>*Output()</code> there must be a compatible <code>render*()</code> in the server. They work as pairs, connected by the unique name of the output, to add R output to the UI.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2516,8 +2513,10 @@ Session One
 </code></pre>
 </div>
 </div>
-<p>The server is one large function. <code>output</code> is inherent in Shiny–it is a list-like object with code required to update each output object.</p>
-<h1 id="inputs">Inputs</h1>
+<p>The server is one large function that passes in <code>input</code>s and <code>output</code>s (and depending on what you’re doing, a <code>session</code> argument). <code>output</code> is inherent in Shiny–it is a list-like object referencing the outputs in the UI and additional code required to update each output object<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<h2 id="inputs">Inputs</h2>
+<p>What makes Shiny interactive are inputs. Input widgets such as text boxes, checkboxes, dropdown menus, buttons, and <a href="https://shiny.rstudio.com/gallery/widget-gallery.html">many others</a>, collect values from the user.</p>
+<p>Similar to <code>*Output()</code>, inputs also require a unique name. The unique <code>inputID</code> is what connects the front-end to the back-end.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2527,7 +2526,7 @@ Session One
       <span class='va'>tags</span><span class='op'>$</span><span class='fu'>a</span><span class='op'>(</span>href <span class='op'>=</span> <span class='st'>"https://www.ssa.gov/oact/babynames/limits.html"</span>, 
              <span class='st'>"Social Security Administration"</span><span class='op'>)</span><span class='op'>)</span>,
     
-    <span class='co'># A place to enter a name</span>
+    <span class='co'># A text box to enter a name. Its ID is 'name'.</span>
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textInput.html'>textInput</a></span><span class='op'>(</span><span class='st'>"name"</span>, 
               label <span class='op'>=</span> <span class='st'>"Enter name"</span>,
               placeholder <span class='op'>=</span> <span class='st'>"Jane"</span><span class='op'>)</span>,
@@ -2538,6 +2537,7 @@ Session One
 </code></pre>
 </div>
 </div>
+<p>In this example, we collect the user’s input value from <code>textInput()</code> and display it in the output area called <code>name_entered</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2560,6 +2560,7 @@ Session One
 </code></pre>
 </div>
 </div>
+<p>Server-side, reference the input value with <code>input$</code> as a prefix and the unique name of the input widget. <code>input</code> like <code>output</code> is inherent to Shiny. It is a list-like object containing all inputIDs from the UI.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2579,6 +2580,12 @@ Session One
 </div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/">https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

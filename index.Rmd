@@ -29,7 +29,9 @@ In this two part module, we'll walk through how to get started, peek inside the 
 |Session One | Session Two|
 |:------------|:------------|
 |Getting Started| |
-|Anatomy | |
+|Anatomy, Inputs & Outputs | |
+|Layout||
+|Reactivity||
 
 
 
