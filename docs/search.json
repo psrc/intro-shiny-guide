@@ -25,9 +25,10 @@
     {
       "path": "layout.html",
       "title": "Layout",
+      "description": "Organize your UI\n",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-09T21:29:42-08:00"
+      "contents": "\r\n\r\nContents\r\nPre-defined Layouts\r\nRows and Columns\r\n\r\nWith inputs and outputs established in the UI, we can arrange them with various layout functions.\r\nPre-defined Layouts\r\nSome are pre-set like sidebarLayout().\r\n\r\n\r\nui <- fluidPage(\r\n\r\n  title,\r\n  src,\r\n  \r\n  # A sidebarLayout with sidebarPanel and mainPanel\r\n  sidebarLayout(\r\n    sidebarPanel(),\r\n    mainPanel()\r\n    )\r\n\r\n)\r\n\r\n\r\n\r\nPlace content within sidebarPanel() and mainPanel().\r\n\r\n\r\nui <- fluidPage(\r\n  \r\n  title,\r\n  src,\r\n  \r\n  # sidebar layout with sidebarPanel and mainPanel\r\n  sidebarLayout(\r\n    sidebarPanel(\r\n      txt_box,\r\n      txt_disp\r\n    ),\r\n    mainPanel(\r\n      tbl_disp\r\n    )\r\n  )\r\n)\r\n\r\n\r\n\r\nRows and Columns\r\nIn lieu of pre-defined layouts, you can build your layout with rows and columns using fluidRow() or fixedRow(). columns() are created within *Row() .\r\n\r\nSet column widths using an integer between 1 and 12. The maximum number of units within a row is 12.\r\nYou can also embed rows and columns within pre-defined layouts like in the example below.\r\n\r\n\r\nui <- fluidPage(\r\n  \r\n  title,\r\n  src,\r\n  \r\n  # sidebar layout with sidebarPanel and mainPanel\r\n  sidebarLayout(\r\n    sidebarPanel(\r\n      txt_box,\r\n      txt_disp\r\n    ),\r\n    mainPanel(\r\n      # create columns within fluidRow or fixedRow \r\n      fluidRow(\r\n        column(\r\n          width = 6,\r\n          h3(\"Table\"),\r\n          tbl_disp\r\n        ),\r\n        column(\r\n          width = 6,\r\n          h3(\"Plot\")\r\n        )\r\n      )\r\n    )\r\n  )\r\n  \r\n)\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-11T14:10:39-08:00"
     },
     {
       "path": "prework.html",

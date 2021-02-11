@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 **[Official Cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/shiny.pdf)**: A two-pager of Shiny utilities. 
 
-**[Mastering Shiny Book](https://mastering-shiny.org/index.html)**: A book (in progress) by Hadley Wickham. See the `Getting Started` section. For developers who use the tidyverse, the book also includes a section on the latest *tidy evaluation*--helpful for programming with packages like dplyr or ggplot2.
+**[Mastering Shiny Book](https://mastering-shiny.org/index.html)**: A book (in progress) by Hadley Wickham. See the *Getting Started* section. For those who use the tidyverse, it also includes a section on the latest version of *tidy evaluation*--helpful for programming with packages like dplyr or ggplot2.
 
 # Visualization Packages
 

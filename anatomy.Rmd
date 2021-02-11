@@ -136,7 +136,7 @@ server <- function(input, output) {
   
   # render the textInput to the designated output
   output$name_entered <- renderText({
-    print(c("You entered:", input$name))
+    c("You entered:", input$name)
   })
   
   output$main_table <- renderTable({

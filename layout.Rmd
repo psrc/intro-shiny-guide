@@ -1,12 +1,101 @@
 ---
 title: "Layout"
-output: distill::distill_article
+description: |
+  Organize your UI
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+With inputs and outputs established in the UI, we can arrange them with various layout functions.
+
+# Pre-defined Layouts
+
+Some are pre-set like `sidebarLayout()`.
+
+```{r}
+ui <- fluidPage(
+
+  title,
+  src,
+  
+  # A sidebarLayout with sidebarPanel and mainPanel
+  sidebarLayout(
+    sidebarPanel(),
+    mainPanel()
+    )
+
+)
+```
+
+Place content within `sidebarPanel()` and `mainPanel()`.
+
+```{r}
+ui <- fluidPage(
+  
+  title,
+  src,
+  
+  # A sidebarLayout with sidebarPanel and mainPanel
+  sidebarLayout(
+    sidebarPanel(
+      txt_box,
+      txt_disp
+    ),
+    mainPanel(
+      tbl_disp
+    )
+  )
+)
+
+```
+
+# Rows and Columns
+
+In lieu of pre-defined layouts, you can build your layout with rows and columns using `fluidRow()` or `fixedRow()`. `columns()` are created within `*Row()` . 
+
+<aside>
+Set column widths using an integer between 1 and 12. The maximum number of units within a row is 12.
+</aside>
+
+You can also embed rows and columns within pre-defined layouts like in the example below.
+
+```{r}
+ui <- fluidPage(
+  
+  title,
+  src,
+  
+  # A sidebarLayout with sidebarPanel and mainPanel
+  sidebarLayout(
+    sidebarPanel(
+      txt_box,
+      txt_disp
+    ),
+    mainPanel(
+      # create columns within fluidRow or fixedRow 
+      fluidRow(
+        column(
+          width = 6,
+          h3("Table"),
+          tbl_disp
+        ),
+        column(
+          width = 6,
+          h3("Plot")
+        )
+      )
+    )
+  )
+  
+)
+```
 
 
 
