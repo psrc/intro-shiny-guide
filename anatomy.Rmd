@@ -1,5 +1,7 @@
 ---
 title: "Shiny Anatomy"
+description: |
+  The guts and connective tissue
 output: 
   distill::distill_article:
     toc: true

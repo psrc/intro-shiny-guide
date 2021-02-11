@@ -86,27 +86,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Layout</title>
 
-  <meta property="description" itemprop="description" content="Organize your UI"/>
+  <meta property="description" itemprop="description" content="Organize the elements in the UI"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Layout"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Organize your UI"/>
+  <meta property="og:description" content="Organize the elements in the UI"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Layout"/>
-  <meta property="twitter:description" content="Organize your UI"/>
+  <meta property="twitter:description" content="Organize the elements in the UI"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Layout"]},{"type":"character","attributes":{},"value":["Organize your UI\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Layout"]},{"type":"character","attributes":{},"value":["Organize the elements in the UI\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2385,7 +2385,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Layout","description":"Organize your UI","authors":[]}
+{"title":"Layout","description":"Organize the elements in the UI","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2429,7 +2429,7 @@ Session One
 <h1>Layout</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Organize your UI</p></p>
+<p><p>Organize the elements in the UI</p></p>
 </div>
 
 
@@ -2448,15 +2448,15 @@ Session One
 <p>Some are pre-set like <code>sidebarLayout()</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
 
   <span class='va'>title</span>,
   <span class='va'>src</span>,
   
   <span class='co'># A sidebarLayout with sidebarPanel and mainPanel</span>
-  <span class='fu'>sidebarLayout</span><span class='op'>(</span>
-    <span class='fu'>sidebarPanel</span><span class='op'>(</span><span class='op'>)</span>,
-    <span class='fu'>mainPanel</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span><span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span><span class='op'>)</span>
     <span class='op'>)</span>
 
 <span class='op'>)</span>
@@ -2466,18 +2466,18 @@ Session One
 <p>Place content within <code>sidebarPanel()</code> and <code>mainPanel()</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   
   <span class='va'>title</span>,
   <span class='va'>src</span>,
   
-  <span class='co'># sidebar layout with sidebarPanel and mainPanel</span>
-  <span class='fu'>sidebarLayout</span><span class='op'>(</span>
-    <span class='fu'>sidebarPanel</span><span class='op'>(</span>
+  <span class='co'># A sidebarLayout with sidebarPanel and mainPanel</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
       <span class='va'>txt_box</span>,
       <span class='va'>txt_disp</span>
     <span class='op'>)</span>,
-    <span class='fu'>mainPanel</span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
       <span class='va'>tbl_disp</span>
     <span class='op'>)</span>
   <span class='op'>)</span>
@@ -2493,28 +2493,28 @@ Set column widths using an integer between 1 and 12. The maximum number of units
 <p>You can also embed rows and columns within pre-defined layouts like in the example below.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   
   <span class='va'>title</span>,
   <span class='va'>src</span>,
   
-  <span class='co'># sidebar layout with sidebarPanel and mainPanel</span>
-  <span class='fu'>sidebarLayout</span><span class='op'>(</span>
-    <span class='fu'>sidebarPanel</span><span class='op'>(</span>
+  <span class='co'># A sidebarLayout with sidebarPanel and mainPanel</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
       <span class='va'>txt_box</span>,
       <span class='va'>txt_disp</span>
     <span class='op'>)</span>,
-    <span class='fu'>mainPanel</span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
       <span class='co'># create columns within fluidRow or fixedRow </span>
-      <span class='fu'>fluidRow</span><span class='op'>(</span>
-        <span class='fu'>column</span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
           width <span class='op'>=</span> <span class='fl'>6</span>,
-          <span class='fu'>h3</span><span class='op'>(</span><span class='st'>"Table"</span><span class='op'>)</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Table"</span><span class='op'>)</span>,
           <span class='va'>tbl_disp</span>
         <span class='op'>)</span>,
-        <span class='fu'>column</span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
           width <span class='op'>=</span> <span class='fl'>6</span>,
-          <span class='fu'>h3</span><span class='op'>(</span><span class='st'>"Plot"</span><span class='op'>)</span>
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Plot"</span><span class='op'>)</span>
         <span class='op'>)</span>
       <span class='op'>)</span>
     <span class='op'>)</span>
