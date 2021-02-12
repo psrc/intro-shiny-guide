@@ -1,13 +1,46 @@
 ---
 title: "Reactivity"
-output: distill::distill_article
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+# Reactive Programming
 
+## Reactives
+
+```{r}
+server <- function(input, output) {
+  
+  # add reactive expression creating a filtered data frame
+  filtered_df <- reactive({
+    df %>% 
+      filter(name == input$name)
+  })
+  
+  output$name_entered <- renderText({
+    c("You entered:", input$name)
+  })
+  
+  output$main_table <- renderTable({
+    # call reactive expression
+    filtered_df()
+  })
+  
+  
+}
+```
+
+
+## Observers
+
+# Delaying Response
 
 
 
