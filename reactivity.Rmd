@@ -13,7 +13,15 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 # Reactive Programming
 
+Shiny follows a reactive programming paradigm[^1]. We don't need to command Shiny to update itself, rather, it will automatically update outputs if an input changes. More specifically, Shiny will only update the dependencies of that particular input. 
+
+[^1]: https://mastering-shiny.org/basic-reactivity.html#reactive-programming
+
+Shiny maximizes the work not done! In other words, it's lazy and will only do the most minimal work required to update outputs.
+
 ## Reactives
+
+In lieu of variables and the typical function that we'd write in a standard R script, R code within the server is often placed inside reactive expressions using `reactive({})`. 
 
 ```{r}
 server <- function(input, output) {
@@ -21,7 +29,7 @@ server <- function(input, output) {
   # add reactive expression creating a filtered data frame
   filtered_df <- reactive({
     df %>% 
-      filter(name == input$name)
+      filter(name == input$name & state == input$state)
   })
   
   output$name_entered <- renderText({

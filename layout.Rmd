@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 With inputs and outputs established in the UI, we can arrange them with various layout functions.
 
-For readability, let's store each of the existing UI elements as its own variable in the global section, above `ui`.
+For readability, each of the existing UI elements will be set to its own variable in the global section, above `ui`.
 
 ```{r}
 title <- titlePanel("U.S. Baby Names")
@@ -23,8 +23,8 @@ src <- p("Source:",
          tags$a(href = "https://www.ssa.gov/oact/babynames/limits.html",
                 "Social Security Administration"))
 txt_box <- textInput("name", 
-          label = "Enter name",
-          placeholder = "Jane")
+                     label = "Enter name",
+                     placeholder = "Jane")
 txt_disp <- textOutput("name_entered")
 tbl_disp <- tableOutput("main_table")
 ```
@@ -114,6 +114,43 @@ ui <- fluidPage(
 )
 ```
 
+While we're in the UI, let's add some additional inputs to the sidebar.
+
+```{r}
+ui <- fluidPage(
+  
+  title,
+  src,
+  
+  # sidebar layout with sidebarPanel and mainPanel
+  sidebarLayout(
+    sidebarPanel(
+      txt_box,
+      txt_disp,
+      # add a dropdown menu to select state
+      selectInput("state",
+                  label = 'Select State',
+                  choices = unique(df$state))
+    ),
+    mainPanel(
+      fluidRow(
+        column(
+          width = 6,
+          h3("Table"),
+          tbl_disp
+        ),
+        column(
+          width = 6,
+          # add a place holder for a plot
+          h3("Plot"),
+          plotOutput("plot")
+        )
+      )
+    )
+  )
+  
+)
+```
 
 
 

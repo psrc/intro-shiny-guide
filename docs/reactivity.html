@@ -2445,7 +2445,10 @@ Session One
 </nav>
 </div>
 <h1 id="reactive-programming">Reactive Programming</h1>
+<p>Shiny follows a reactive programming paradigm<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We don’t need to command Shiny to update itself, rather, it will automatically update outputs if an input changes. More specifically, Shiny will only update the dependencies of that particular input.</p>
+<p>Shiny maximizes the work not done! In other words, it’s lazy and will only do the most minimal work required to update outputs.</p>
 <h2 id="reactives">Reactives</h2>
+<p>In lieu of variables and the typical function that we’d write in a standard R script, R code within the server is often placed inside reactive expressions using <code>reactive({})</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2453,7 +2456,7 @@ Session One
   <span class='co'># add reactive expression creating a filtered data frame</span>
   <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
     <span class='va'>df</span> <span class='op'>%&gt;%</span> 
-      <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span><span class='op'>)</span>
+      <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>==</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>
   <span class='op'>}</span><span class='op'>)</span>
   
   <span class='va'>output</span><span class='op'>$</span><span class='va'>name_entered</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
@@ -2473,6 +2476,12 @@ Session One
 <h2 id="observers">Observers</h2>
 <h1 id="delaying-response">Delaying Response</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://mastering-shiny.org/basic-reactivity.html#reactive-programming" class="uri">https://mastering-shiny.org/basic-reactivity.html#reactive-programming</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
