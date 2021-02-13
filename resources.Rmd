@@ -29,3 +29,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Reactable
 
+Another interactive table package. On the surface, basic use of [reactable](https://glin.github.io/reactable/) might not be that different than DT, but the ability to create expandable rows and nested tables, and the conditional styling examples really makes this package stand out.
+
+To see a Shiny app with a reactable table in the wild, see [this reactable example](https://christy-lam.shinyapps.io/ofm-wa-estimates/), code is available [here](https://github.com/cyyllam/ofm-wa-estimates).
+
