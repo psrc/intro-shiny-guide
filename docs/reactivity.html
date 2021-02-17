@@ -2443,13 +2443,16 @@ Session One
 <li><a href="#side-effects">Side-effects</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#delaying-response">Delaying Response</a></li>
+<li><a href="#delaying-response">Delaying Response</a>
+<ul>
+<li><a href="#eventreactive">eventReactive</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
 <h1 id="reactive-programming">Reactive Programming</h1>
 <p>Shiny follows a reactive programming paradigm<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We don’t need to command Shiny to update itself, rather, it will automatically update outputs if an input changes. More specifically, Shiny will only update the dependencies of that particular input.</p>
-<p>Shiny maximizes the work not done! In other words, it’s lazy and will only do the most minimal work required to update outputs.</p>
+<p>Shiny <a href="https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc">maximizes the work not done</a>! In other words, it’s energy-saving and will only do the most minimal work required to update outputs.</p>
 <h2 id="reactives">Reactives</h2>
 <p>In lieu of variables and the typical function that we’d write in a standard R script, R code within the server is often placed inside reactive expressions using <code>reactive({})</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2531,7 +2534,9 @@ Session One
 <p>Sometimes we want our app to perform an action that is beyond our app’s environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, or updating a database<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <h1 id="delaying-response">Delaying Response</h1>
 <p>Specify when a reaction of a reactive or observer should take place with <code>eventReactive({})</code> or <code>observeEvent({})</code></p>
-<p>Sometimes the table will render before we finishing typing a name. We can add an event, via an action button.</p>
+<h2 id="eventreactive">eventReactive</h2>
+<p>Sometimes the table will render even before we finish typing a name. To delay that rapid response, we can require an event take place before proceeding with certain tasks.</p>
+<p>In the example below, we add an action button to create an event (on-click).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2572,7 +2577,7 @@ Session One
 </code></pre>
 </div>
 </div>
-<p>When the button is clicked, it will trigger the filtering of the data frame and other dependencies.</p>
+<p>Filtering the data frame and other downstream dependencies will begin once the button is clicked.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
