@@ -130,7 +130,8 @@ ui <- fluidPage(
       # add a dropdown menu to select state
       selectInput("state",
                   label = 'Select State',
-                  choices = unique(df$state))
+                  choices = unique(df$state),
+                  selected = 'Washington')
     ),
     mainPanel(
       fluidRow(

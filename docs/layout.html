@@ -2557,7 +2557,8 @@ Set column widths using an integer between 1 and 12. The maximum number of units
       <span class='co'># add a dropdown menu to select state</span>
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"state"</span>,
                   label <span class='op'>=</span> <span class='st'>'Select State'</span>,
-                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span><span class='op'>)</span>
+                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>,
+                  selected <span class='op'>=</span> <span class='st'>'Washington'</span><span class='op'>)</span>
     <span class='op'>)</span>,
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
       <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>

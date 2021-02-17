@@ -110,5 +110,75 @@ Sometimes we want our app to perform an action that is beyond our app's environm
 
 Specify when a reaction of a reactive or observer should take place with `eventReactive({})` or `observeEvent({})`
 
+Sometimes the table will render before we finishing typing a name. We can add an event, via an action button. 
+
+```{r}
+ui <- fluidPage(
+  
+  title,
+  src,
+  
+  sidebarLayout(
+    sidebarPanel(
+      txt_box,
+      txt_disp,
+      
+      selectInput("state",
+                  label = 'Select State',
+                  choices = unique(df$state),
+                  selected = 'Washington'),
+      
+      # add action button to delay reactivity. Its ID is 'go'.
+      actionButton("go", label = "Enter")
+    ),
+    mainPanel(
+      fluidRow(
+        column(
+          width = 6,
+          h3("Table"),
+          tbl_disp
+        ),
+        column(
+          width = 6,
+          h3("Plot"),
+          plotOutput("plot")
+        )
+      )
+    )
+  )
+  
+)
+```
+
+When the button is clicked, it will trigger the filtering of the data frame and other dependencies.
+
+```{r}
+server <- function(input, output) {
+  
+  clean_name <- reactive({
+    input$name %>% 
+      str_replace_all(" ", "") %>% 
+      str_trim() %>% 
+      str_to_title()
+  })
+  
+  # change reactive to an eventReactive. Delay reaction until action button is clicked
+  filtered_df <- eventReactive(input$go, {
+    df %>% 
+      filter(name == clean_name() & state == input$state)
+  })
+  
+  output$name_entered <- renderText({
+    c("You entered:", input$name)
+  })
+  
+  output$main_table <- renderTable({
+    filtered_df()
+  })
+
+}
+```
+
+
 
 
