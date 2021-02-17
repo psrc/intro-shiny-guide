@@ -13,11 +13,11 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 # Reactive Programming
 
-Shiny follows a reactive programming paradigm[^1]. We don't need to command Shiny to update itself, rather, it will automatically update outputs if an input changes. More specifically, Shiny will only update the dependencies of that particular input. 
+Shiny follows a reactive programming paradigm[^1]. We don't need to command Shiny to update itself, rather, it will react on its own. If an input changes, it will automatically update outputs and other dependencies of that input. 
 
 [^1]: https://mastering-shiny.org/basic-reactivity.html#reactive-programming
 
-Shiny [maximizes the work not done](https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc)! In other words, it's energy-saving and will only do the most minimal work required to update outputs.
+Shiny is energy-saving. It [maximizes the work not done](https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc) and will only do the most minimal work required to update outputs.
 
 ## Reactives
 
@@ -45,17 +45,11 @@ server <- function(input, output) {
 }
 ```
 
-Reactives help to:
+Reactives help to **not repeat ourselves** and **break-down complex or lengthy code**.
 
-  - not repeat ourselves
-  - break-down complex or lengthy code
+Reactives, like standard functions are **assigned to a variable** and are **called upon**.
 
-Reactives, like standard functions:
-
-  - are assigned to a variable
-  - are called upon
-
-but unlike the average function, they monitor `input` and dependencies. If reactive sources change, it will update; otherwise, they are lazy.
+But unlike the average function, they **monitor `input` and dependencies**. If reactive sources change, it will update; otherwise, they are lazy.
 
 ```{r}
 server <- function(input, output) {
@@ -110,11 +104,11 @@ Sometimes we want our app to perform an action that is beyond our app's environm
 
 Specify when a reaction of a reactive or observer should take place with `eventReactive({})` or `observeEvent({})`
 
-## eventReactive
+## eventReactive({})
 
 Sometimes the table will render even before we finish typing a name. To delay that rapid response, we can require an event take place before proceeding with certain tasks. 
 
-In the example below, we add an action button to create an event (on-click).
+In the example below, we add an action button. The event is when the user clicks on 'Enter'.
 
 ```{r}
 ui <- fluidPage(
