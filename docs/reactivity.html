@@ -2438,7 +2438,10 @@ Session One
 <li><a href="#reactive-programming">Reactive Programming</a>
 <ul>
 <li><a href="#reactives">Reactives</a></li>
-<li><a href="#observers">Observers</a></li>
+<li><a href="#observers">Observers</a>
+<ul>
+<li><a href="#side-effects">Side-effects</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#delaying-response">Delaying Response</a></li>
 </ul>
@@ -2473,13 +2476,68 @@ Session One
 </code></pre>
 </div>
 </div>
+<p>Reactives help to:</p>
+<ul>
+<li>not repeat ourselves</li>
+<li>break-down complex or lengthy code</li>
+</ul>
+<p>Reactives, like standard functions:</p>
+<ul>
+<li>are assigned to a variable</li>
+<li>are called upon</li>
+</ul>
+<p>but unlike the average function, they monitor <code>input</code> and dependencies. If reactive sources change, it will update; otherwise, they are lazy.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='co'># add reactive expression to munge name before using in filtered_df()</span>
+  <span class='va'>clean_name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_replace_all</span><span class='op'>(</span><span class='st'>" "</span>, <span class='st'>""</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_trim</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_to_title</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='co'># call clean_name() in lieu of input$name</span>
+  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='va'>df</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>==</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>name_entered</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"You entered:"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
 <h2 id="observers">Observers</h2>
+<p>In contrast to the lazy <code>reactive({})</code>, <code>observe({})</code> is eager and also forgetful — they run as soon as they possibly can and they don’t remember their previous action<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>Unlike reactives, observers:</p>
+<ul>
+<li>aren’t assigned to a variable</li>
+<li>aren’t called on</li>
+<li>don’t return values</li>
+</ul>
+<p>Instead, observers are used primarily for their side-effects.</p>
+<h3 id="side-effects">Side-effects</h3>
+<p>Sometimes we want our app to perform an action that is beyond our app’s environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, or updating a database<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <h1 id="delaying-response">Delaying Response</h1>
+<p>Specify when a reaction of a reactive or observer should take place with <code>eventReactive({})</code> or <code>observeEvent({})</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p><a href="https://mastering-shiny.org/basic-reactivity.html#reactive-programming" class="uri">https://mastering-shiny.org/basic-reactivity.html#reactive-programming</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://mastering-shiny.org/reactivity-objects.html#observers-details" class="uri">https://mastering-shiny.org/reactivity-objects.html#observers-details</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://mastering-shiny.org/basic-reactivity.html#observers" class="uri">https://mastering-shiny.org/basic-reactivity.html#observers</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

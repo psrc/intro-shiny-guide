@@ -45,12 +45,70 @@ server <- function(input, output) {
 }
 ```
 
+Reactives help to:
+
+  - not repeat ourselves
+  - break-down complex or lengthy code
+
+Reactives, like standard functions:
+
+  - are assigned to a variable
+  - are called upon
+
+but unlike the average function, they monitor `input` and dependencies. If reactive sources change, it will update; otherwise, they are lazy.
+
+```{r}
+server <- function(input, output) {
+  
+  # add reactive expression to munge name before using in filtered_df()
+  clean_name <- reactive({
+    input$name %>% 
+      str_replace_all(" ", "") %>% 
+      str_trim() %>% 
+      str_to_title()
+  })
+  
+  # call clean_name() in lieu of input$name
+  filtered_df <- reactive({
+    df %>% 
+      filter(name == clean_name() & state == input$state)
+  })
+  
+  output$name_entered <- renderText({
+    c("You entered:", input$name)
+  })
+  
+  output$main_table <- renderTable({
+    filtered_df()
+  })
+  
+  
+}
+```
 
 ## Observers
 
+In contrast to the lazy `reactive({})`, `observe({})` is eager and also forgetful — they run as soon as they possibly can and they don’t remember their previous action[^2].
+
+[^2]: https://mastering-shiny.org/reactivity-objects.html#observers-details
+
+Unlike reactives, observers:
+
+  - aren't assigned to a variable
+  - aren't called on
+  - don't return values
+  
+Instead, observers are used primarily for their side-effects.
+
+### Side-effects
+
+Sometimes we want our app to perform an action that is beyond our app's environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, or updating a database[^3].
+
+[^3]: https://mastering-shiny.org/basic-reactivity.html#observers
+
 # Delaying Response
 
-
+Specify when a reaction of a reactive or observer should take place with `eventReactive({})` or `observeEvent({})`
 
 
 
