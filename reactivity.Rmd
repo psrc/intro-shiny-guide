@@ -13,11 +13,11 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 # Reactive Programming
 
-Shiny follows a reactive programming paradigm[^1]. We don't need to command Shiny to update itself, rather, it will react on its own. If an input changes, it will automatically update outputs and other dependencies of that input. 
+Shiny follows a reactive programming paradigm[^1]. We don't need to command Shiny to update itself, rather, it will react on its own. If an input changes, it will automatically update the outputs dependent upon it. 
 
 [^1]: https://mastering-shiny.org/basic-reactivity.html#reactive-programming
 
-Shiny is energy-saving. It [maximizes the work not done](https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc) and will only do the most minimal work required to update outputs.
+Think of Shiny as being either energy-saving or lazy (depending on your perspective!). Shiny [maximizes the work not done](https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc) and will only do the most minimal work required to update outputs.
 
 ## Reactives
 
@@ -96,19 +96,19 @@ Instead, observers are used primarily for their side-effects.
 
 ### Side-effects
 
-Sometimes we want our app to perform an action that is beyond our app's environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, or updating a database[^3].
+Sometimes we want our app to perform an action that is beyond our app's environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, updating a database[^3], or even updating values of input widgets.
 
 [^3]: https://mastering-shiny.org/basic-reactivity.html#observers
 
 # Delaying Response
 
-Specify when a reaction of a reactive or observer should take place with `eventReactive({})` or `observeEvent({})`
+Specify when a reaction of a reactive or observer should take place with `eventReactive({})` or `observeEvent({})`. The concept is similar to `reactive({})` and `observe({})`, except they will be driven by an event.
 
-## eventReactive({})
+## eventReactive
 
-Sometimes the table will render even before we finish typing a name. To delay that rapid response, we can require an event take place before proceeding with certain tasks. 
+The table might render even before we finish typing a name. To delay that rapid response, we can require that an event take place before the app proceeds with certain tasks. 
 
-In the example below, we add an action button. The event is when the user clicks on 'Enter'.
+In the example below, we add an action button. The event will be when the user clicks on 'Enter'.
 
 ```{r}
 ui <- fluidPage(
@@ -177,6 +177,92 @@ server <- function(input, output) {
 }
 ```
 
+## observeEvent
+
+Like `observe({})`, `observeEvent({})` will produce a side-effect; however, it will be triggered only by an event. 
+
+A use case of `observeEvent` is when we want the content of the input widgets updated. We can achieve this by nesting an `update*()` function inside an `observeEvent` function.
+
+In the example below, let's add another action button. When clicked it will clear the text inside the text box.
+
+```{r}
+ui <- fluidPage(
+  
+  title,
+  src,
+  
+  sidebarLayout(
+    sidebarPanel(
+      txt_box,
+      
+      # add a button to clear text input
+      actionButton("clear", label = "Clear Name"),
+      
+      txt_disp,
+      
+      selectInput("state",
+                  label = 'Select State',
+                  choices = unique(df$state),
+                  selected = 'Washington'),
+      
+      actionButton("go", label = "Enter")
+    ),
+    mainPanel(
+      fluidRow(
+        column(
+          width = 6,
+          h3("Table"),
+          tbl_disp
+        ),
+        column(
+          width = 6,
+          h3("Plot"),
+          plotOutput("plot")
+        )
+      )
+    )
+  )
+  
+)
+```
+
+Updating the content of the input widget will be unique to the user. We don't want all sessions to react when one user clicks on 'Clear Name'. Server-side, include `session` as an argument to the `server` function. 
+
+```{r}
+# add session argument in the server function
+server <- function(input, output, session) {
+  
+  clean_name <- reactive({
+    input$name %>% 
+      str_replace_all(" ", "") %>% 
+      str_trim() %>% 
+      str_to_title()
+  })
+  
+  # using an observeEvent, update the textInput by clearing the typed name when the 
+  # 'clear' button is clicked
+  observeEvent(input$clear, {
+    updateTextInput(session, 
+                    "name",
+                    value = ""
+    )
+  })
+ 
+  filtered_df <- eventReactive(input$go, {
+    df %>% 
+      filter(name == clean_name() & state == input$state)
+  })
+  
+  output$name_entered <- renderText({
+    c("You entered:", input$name)
+  })
+  
+  output$main_table <- renderTable({
+    filtered_df()
+  })
+
+}
+```
 
 
 

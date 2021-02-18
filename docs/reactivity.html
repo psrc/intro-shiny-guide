@@ -2445,14 +2445,15 @@ Session One
 </ul></li>
 <li><a href="#delaying-response">Delaying Response</a>
 <ul>
-<li><a href="#eventreactive">eventReactive({})</a></li>
+<li><a href="#eventreactive">eventReactive</a></li>
+<li><a href="#observeevent">observeEvent</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <h1 id="reactive-programming">Reactive Programming</h1>
-<p>Shiny follows a reactive programming paradigm<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We don’t need to command Shiny to update itself, rather, it will react on its own. If an input changes, it will automatically update outputs and other dependencies of that input.</p>
-<p>Shiny is energy-saving. It <a href="https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc">maximizes the work not done</a> and will only do the most minimal work required to update outputs.</p>
+<p>Shiny follows a reactive programming paradigm<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. We don’t need to command Shiny to update itself, rather, it will react on its own. If an input changes, it will automatically update the outputs dependent upon it.</p>
+<p>Think of Shiny as being either energy-saving or lazy (depending on your perspective!). Shiny <a href="https://medium.com/lapis/reflection-on-principle-10-simplicity-the-art-of-maximizing-the-amount-of-work-not-done-is-99520e0654dc">maximizes the work not done</a> and will only do the most minimal work required to update outputs.</p>
 <h2 id="reactives">Reactives</h2>
 <p>In lieu of variables and the typical function that we’d write in a standard R script, R code within the server is often placed inside reactive expressions using <code>reactive({})</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2523,12 +2524,12 @@ Session One
 </ul>
 <p>Instead, observers are used primarily for their side-effects.</p>
 <h3 id="side-effects">Side-effects</h3>
-<p>Sometimes we want our app to perform an action that is beyond our app’s environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, or updating a database<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>Sometimes we want our app to perform an action that is beyond our app’s environment. Examples of side-effects can include: writing and saving a file to disk, copying and pasting files, updating a web API, updating a database<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, or even updating values of input widgets.</p>
 <h1 id="delaying-response">Delaying Response</h1>
-<p>Specify when a reaction of a reactive or observer should take place with <code>eventReactive({})</code> or <code>observeEvent({})</code></p>
-<h2 id="eventreactive">eventReactive({})</h2>
-<p>Sometimes the table will render even before we finish typing a name. To delay that rapid response, we can require an event take place before proceeding with certain tasks.</p>
-<p>In the example below, we add an action button. The event is when the user clicks on ‘Enter’.</p>
+<p>Specify when a reaction of a reactive or observer should take place with <code>eventReactive({})</code> or <code>observeEvent({})</code>. The concept is similar to <code>reactive({})</code> and <code>observe({})</code>, except they will be driven by an event.</p>
+<h2 id="eventreactive">eventReactive</h2>
+<p>The table might render even before we finish typing a name. To delay that rapid response, we can require that an event take place before the app proceeds with certain tasks.</p>
+<p>In the example below, we add an action button. The event will be when the user clicks on ‘Enter’.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2582,6 +2583,92 @@ Session One
   <span class='op'>}</span><span class='op'>)</span>
   
   <span class='co'># change reactive to an eventReactive. Delay reaction until action button is clicked</span>
+  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+    <span class='va'>df</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>==</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>name_entered</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPrint.html'>renderText</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"You entered:"</span>, <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h2 id="observeevent">observeEvent</h2>
+<p>Like <code>observe({})</code>, <code>observeEvent({})</code> will produce a side-effect; however, it will be triggered only by an event.</p>
+<p>A use case of <code>observeEvent</code> is when we want the content of the input widgets updated. We can achieve this by nesting an <code>update*()</code> function inside an <code>observeEvent</code> function.</p>
+<p>In the example below, let’s add another action button. When clicked it will clear the text inside the text box.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  
+  <span class='va'>title</span>,
+  <span class='va'>src</span>,
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
+      <span class='va'>txt_box</span>,
+      
+      <span class='co'># add a button to clear text input</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"clear"</span>, label <span class='op'>=</span> <span class='st'>"Clear Name"</span><span class='op'>)</span>,
+      
+      <span class='va'>txt_disp</span>,
+      
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"state"</span>,
+                  label <span class='op'>=</span> <span class='st'>'Select State'</span>,
+                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>,
+                  selected <span class='op'>=</span> <span class='st'>'Washington'</span><span class='op'>)</span>,
+      
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"go"</span>, label <span class='op'>=</span> <span class='st'>"Enter"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
+          width <span class='op'>=</span> <span class='fl'>6</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Table"</span><span class='op'>)</span>,
+          <span class='va'>tbl_disp</span>
+        <span class='op'>)</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
+          width <span class='op'>=</span> <span class='fl'>6</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Plot"</span><span class='op'>)</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>
+  
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Updating the content of the input widget will be unique to the user. We don’t want all sessions to react when one user clicks on ‘Clear Name’. Server-side, include <code>session</code> as an argument to the <code>server</code> function.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># add session argument in the server function</span>
+<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='va'>clean_name</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_replace_all</span><span class='op'>(</span><span class='st'>" "</span>, <span class='st'>""</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_trim</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>str_to_title</span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='co'># using an observeEvent, update the textInput by clearing the typed name when the </span>
+  <span class='co'># 'clear' button is clicked</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>clear</span>, <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/updateTextInput.html'>updateTextInput</a></span><span class='op'>(</span><span class='va'>session</span>, 
+                    <span class='st'>"name"</span>,
+                    value <span class='op'>=</span> <span class='st'>""</span>
+    <span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+ 
   <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
     <span class='va'>df</span> <span class='op'>%&gt;%</span> 
       <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>==</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>

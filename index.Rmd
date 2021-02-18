@@ -28,10 +28,10 @@ In this two part module, we'll walk through how to get started, peek inside the 
 
 |Session One | Session Two|
 |:------------|:------------|
-|Getting Started| |
-|Anatomy, Inputs & Outputs | |
-|Layout||
-|Reactivity||
+|Getting Started| Multi-file apps|
+|Anatomy, Inputs & Outputs | Packages |
+|Layout| Styling |
+|Reactivity| Deploy |
 
 
 
