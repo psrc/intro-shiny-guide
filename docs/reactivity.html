@@ -2528,8 +2528,8 @@ Session One
 <h1 id="delaying-response">Delaying Response</h1>
 <p>Specify when a reaction of a reactive or observer should take place with <code>eventReactive({})</code> or <code>observeEvent({})</code>. The concept is similar to <code>reactive({})</code> and <code>observe({})</code>, except they will be driven by an event.</p>
 <h2 id="eventreactive">eventReactive</h2>
-<p>The table might render even before we finish typing a name. To delay that rapid response, we can require that an event take place before the app proceeds with certain tasks.</p>
-<p>In the example below, we add an action button. The event will be when the user clicks on ‘Enter’.</p>
+<p>The table might render before we even finish typing a name. To delay that rapid response, we can require that an event take place before the app proceeds with certain tasks.</p>
+<p>In the example below, an action button is created. The event will be when the user clicks on ‘Enter’.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2602,8 +2602,8 @@ Session One
 </div>
 <h2 id="observeevent">observeEvent</h2>
 <p>Like <code>observe({})</code>, <code>observeEvent({})</code> will produce a side-effect; however, it will be triggered only by an event.</p>
-<p>A use case of <code>observeEvent</code> is when we want the content of the input widgets updated. We can achieve this by nesting an <code>update*()</code> function inside an <code>observeEvent</code> function.</p>
-<p>In the example below, let’s add another action button. When clicked it will clear the text inside the text box.</p>
+<p>A use case of <code>observeEvent</code> is when we want the content of an input widget updated. We can achieve this by nesting an <code>update*()</code> function inside an <code>observeEvent</code> function.</p>
+<p>In the example below, another action button is created. When clicked, it will clear the text inside the text box.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
@@ -2647,7 +2647,7 @@ Session One
 </code></pre>
 </div>
 </div>
-<p>Updating the content of the input widget will be unique to the user. We don’t want all sessions to react when one user clicks on ‘Clear Name’. Server-side, include <code>session</code> as an argument to the <code>server</code> function.</p>
+<p>Updating input controls with <code>update*()</code> functions require a <code>session</code> argument. <code>session</code> like <code>input</code>, and <code>output</code> are inherent in Shiny–it’s not something we need to create, we just need to include it as a parameter to the <code>server</code> function. The session object is an environment that can be used to access information and functionality relating to the session<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># add session argument in the server function</span>
@@ -2661,7 +2661,7 @@ Session One
   <span class='op'>}</span><span class='op'>)</span>
   
   <span class='co'># using an observeEvent, update the textInput by clearing the typed name when the </span>
-  <span class='co'># 'clear' button is clicked</span>
+  <span class='co'># 'Clear Name' button is clicked</span>
   <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>clear</span>, <span class='op'>{</span>
     <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/updateTextInput.html'>updateTextInput</a></span><span class='op'>(</span><span class='va'>session</span>, 
                     <span class='st'>"name"</span>,
@@ -2693,6 +2693,7 @@ Session One
 <li id="fn1" role="doc-endnote"><p><a href="https://mastering-shiny.org/basic-reactivity.html#reactive-programming" class="uri">https://mastering-shiny.org/basic-reactivity.html#reactive-programming</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p><a href="https://mastering-shiny.org/reactivity-objects.html#observers-details" class="uri">https://mastering-shiny.org/reactivity-objects.html#observers-details</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p><a href="https://mastering-shiny.org/basic-reactivity.html#observers" class="uri">https://mastering-shiny.org/basic-reactivity.html#observers</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><a href="https://shiny.rstudio.com/reference/shiny/latest/session.html" class="uri">https://shiny.rstudio.com/reference/shiny/latest/session.html</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

@@ -106,9 +106,9 @@ Specify when a reaction of a reactive or observer should take place with `eventR
 
 ## eventReactive
 
-The table might render even before we finish typing a name. To delay that rapid response, we can require that an event take place before the app proceeds with certain tasks. 
+The table might render before we even finish typing a name. To delay that rapid response, we can require that an event take place before the app proceeds with certain tasks. 
 
-In the example below, we add an action button. The event will be when the user clicks on 'Enter'.
+In the example below, an action button is created. The event will be when the user clicks on 'Enter'.
 
 ```{r}
 ui <- fluidPage(
@@ -181,9 +181,9 @@ server <- function(input, output) {
 
 Like `observe({})`, `observeEvent({})` will produce a side-effect; however, it will be triggered only by an event. 
 
-A use case of `observeEvent` is when we want the content of the input widgets updated. We can achieve this by nesting an `update*()` function inside an `observeEvent` function.
+A use case of `observeEvent` is when we want the content of an input widget updated. We can achieve this by nesting an `update*()` function inside an `observeEvent` function.
 
-In the example below, let's add another action button. When clicked it will clear the text inside the text box.
+In the example below, another action button is created. When clicked, it will clear the text inside the text box.
 
 ```{r}
 ui <- fluidPage(
@@ -226,7 +226,9 @@ ui <- fluidPage(
 )
 ```
 
-Updating the content of the input widget will be unique to the user. We don't want all sessions to react when one user clicks on 'Clear Name'. Server-side, include `session` as an argument to the `server` function. 
+Updating input controls with `update*()` functions require a `session` argument. `session` like `input`, and `output` are inherent in Shiny--it's not something we need to create, we just need to include it as a parameter to the `server` function. The session object is an environment that can be used to access information and functionality relating to the session[^4]. 
+
+[^4]: https://shiny.rstudio.com/reference/shiny/latest/session.html
 
 ```{r}
 # add session argument in the server function
@@ -240,7 +242,7 @@ server <- function(input, output, session) {
   })
   
   # using an observeEvent, update the textInput by clearing the typed name when the 
-  # 'clear' button is clicked
+  # 'Clear Name' button is clicked
   observeEvent(input$clear, {
     updateTextInput(session, 
                     "name",
