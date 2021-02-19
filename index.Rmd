@@ -28,10 +28,11 @@ In this two part module, we'll walk through how to get started, peek inside the 
 
 |Session One | Session Two|
 |:------------|:------------|
-|Getting Started| Multi-file apps|
-|Anatomy, Inputs & Outputs | Packages |
+|Getting Started| Packages II|
+|Anatomy, Inputs & Outputs | Multi-file apps |
 |Layout| Styling |
 |Reactivity| Deploy |
+|Packages I | Shiny Cousins and Family-friends|
 
 
 

@@ -231,7 +231,7 @@ Updating input controls with `update*()` functions require a `session` argument.
 [^4]: https://shiny.rstudio.com/reference/shiny/latest/session.html
 
 ```{r}
-# add session argument in the server function
+# add session parameter in the server function
 server <- function(input, output, session) {
   
   clean_name <- reactive({

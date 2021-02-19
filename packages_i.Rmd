@@ -1,0 +1,22 @@
+---
+title: "Packages I"
+description: |
+  dplyr and plots with ggplot2 and Plotly
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+# Plots
+
+```{r}
+
+```
+
+# Tidy evaluation
+
+
+
+
