@@ -24,6 +24,8 @@ navbar:
           href: layout.html
         - text: "Reactivity"
           href: reactivity.html
+        - text: "Packages I"
+          href: packages_i.html
     - text: "Session Two"
       href: ""
     - text: "Resources"
