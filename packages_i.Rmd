@@ -1,17 +1,98 @@
 ---
 title: "Packages I"
 description: |
-  dplyr and plots with ggplot2 and Plotly
-output: distill::distill_article
+  Plots with ggplot2 and Plotly
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+Shiny provides the basic tools for client-server interaction, but a lot of parts that make up an app--how it wrangles and displays data, can come from packages of your choice. All of the packages introduced in the R Learning Series so far (`dplyr`, `ggplot2`, `plotly`, `data.table`, `R markdown`, `sf`, `leaflet`) can be included in Shiny.
+
 # Plots
 
+`ggplot2` can be used with the standard `plotOutput()` and `renderPlot({})` functions. 
+
+## ggplot2
+
 ```{r}
+# Server
+
+  output$plot <- renderPlot({
+    filtered_df() %>% 
+      ggplot(aes(x = year, y = count, color = state)) +
+        geom_line() +
+        facet_wrap(vars(sex), nrow = 2, scales = "free_y")
+  })
+
+```
+
+To add more content to our plot (and table), enable the dropdown menu to allow the user to select multiple states.
+
+```{r}
+# UI 
+
+  # add multiple argument to allow more than one selection
+  selectInput("state",
+              label = 'Select State',
+              choices = unique(df$state),
+              selected = 'Washington',
+              multiple = TRUE)
+```
+
+```{r}
+# Server
+
+ # allow filtering of multiple states with `%in%`
+  filtered_df <- eventReactive(input$go, {
+    df %>% 
+      filter(name == clean_name() & state %in% input$state)
+  })
+```
+
+## Plotly
+
+[Plotly](https://plotly.com/ggplot2/), a package that helps create interactive graphs, can be used to convert a static `ggplot2` graph into an interactive one. [Plotly](https://plotly.com/r/) on its own can also be used in lieu of ggplot2. 
+
+To render Plotly graphs in Shiny, use `plotlyOutput()` and `renderPlotly({})` in lieu of the standard plot output and render functions. 
+
+Include the `plotly` package in the global section.
+
+```{r}
+library(plotly)
+```
+
+Convert existing plot output and render functions to their respective Plotly equivalent.
+
+```{r}
+# UI
+
+  # convert plotOutput to a Plotly Output
+  plotlyOutput("plot")
+
+```
+
+```{r}
+# Server
+  
+  # convert renderPlot to renderPlotly
+  output$plot <- renderPlotly({
+    
+    # create ggplot object
+    p <- filtered_df() %>% 
+      ggplot(aes(x = year, y = count, color = state)) +
+        geom_line() +
+        facet_wrap(vars(sex), nrow = 2, scales = "free_y")
+    
+    # wrap ggplot object with ggplotly
+    ggplotly(p)
+  })
 
 ```
 

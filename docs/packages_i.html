@@ -86,27 +86,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Packages I</title>
 
-  <meta property="description" itemprop="description" content="dplyr and plots with ggplot2 and Plotly"/>
+  <meta property="description" itemprop="description" content="Plots with ggplot2 and Plotly"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Packages I"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="dplyr and plots with ggplot2 and Plotly"/>
+  <meta property="og:description" content="Plots with ggplot2 and Plotly"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Packages I"/>
-  <meta property="twitter:description" content="dplyr and plots with ggplot2 and Plotly"/>
+  <meta property="twitter:description" content="Plots with ggplot2 and Plotly"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages I"]},{"type":"character","attributes":{},"value":["dplyr and plots with ggplot2 and Plotly\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages I"]},{"type":"character","attributes":{},"value":["Plots with ggplot2 and Plotly\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2385,7 +2385,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Packages I","description":"dplyr and plots with ggplot2 and Plotly","authors":[]}
+{"title":"Packages I","description":"Plots with ggplot2 and Plotly","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2429,14 +2429,105 @@ Session One
 <h1>Packages I</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>dplyr and plots with ggplot2 and Plotly</p></p>
+<p><p>Plots with ggplot2 and Plotly</p></p>
 </div>
 
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#plots">Plots</a>
+<ul>
+<li><a href="#ggplot2">ggplot2</a></li>
+<li><a href="#plotly">Plotly</a></li>
+</ul></li>
+<li><a href="#tidy-evaluation">Tidy evaluation</a></li>
+</ul>
+</nav>
+</div>
+<p>Shiny provides the basic tools for client-server interaction, but a lot of parts that make up an app–how it wrangles and displays data, can come from packages of your choice. All of the packages introduced in the R Learning Series so far (<code>dplyr</code>, <code>ggplot2</code>, <code>plotly</code>, <code>data.table</code>, <code>R markdown</code>, <code>sf</code>, <code>leaflet</code>) can be included in Shiny.</p>
 <h1 id="plots">Plots</h1>
+<p><code>ggplot2</code> can be used with the standard <code>plotOutput()</code> and <code>renderPlot({})</code> functions.</p>
+<h2 id="ggplot2">ggplot2</h2>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
 
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>count</span>, color <span class='op'>=</span> <span class='va'>state</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='fu'>vars</span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>To add more content to our plot (and table), enable the dropdown menu to allow the user to select multiple states.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI </span>
+
+  <span class='co'># add multiple argument to allow more than one selection</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"state"</span>,
+              label <span class='op'>=</span> <span class='st'>'Select State'</span>,
+              choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>,
+              selected <span class='op'>=</span> <span class='st'>'Washington'</span>,
+              multiple <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+
+ <span class='co'># allow filtering of multiple states with `%in%`</span>
+  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+    <span class='va'>df</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="plotly">Plotly</h2>
+<p><a href="https://plotly.com/ggplot2/">Plotly</a>, a package that helps create interactive graphs, can be used to convert a static <code>ggplot2</code> graph into an interactive one. <a href="https://plotly.com/r/">Plotly</a> on its own can also be used in lieu of ggplot2.</p>
+<p>To render Plotly graphs in Shiny, use <code>plotlyOutput()</code> and <code>renderPlotly({})</code> in lieu of the standard plot output and render functions.</p>
+<p>Include the <code>plotly</code> package in the global section.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://plotly-r.com'>plotly</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Convert existing plot output and render functions to their respective Plotly equivalent.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI</span>
+
+  <span class='co'># convert plotOutput to a Plotly Output</span>
+  <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/plotly-shiny.html'>plotlyOutput</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+  
+  <span class='co'># convert renderPlot to renderPlotly</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/plotly-shiny.html'>renderPlotly</a></span><span class='op'>(</span><span class='op'>{</span>
+    
+    <span class='co'># create ggplot object</span>
+    <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>count</span>, color <span class='op'>=</span> <span class='va'>state</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='fu'>vars</span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span>
+    
+    <span class='co'># wrap ggplot object with ggplotly</span>
+    <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/ggplotly.html'>ggplotly</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <h1 id="tidy-evaluation">Tidy evaluation</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
