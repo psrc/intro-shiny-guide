@@ -1,7 +1,7 @@
 ---
 title: "Packages I"
 description: |
-  Plots with ggplot2 and Plotly
+  dplyr and plots with ggplot2 & Plotly
 output: 
   distill::distill_article:
     toc: true
@@ -96,8 +96,97 @@ Convert existing plot output and render functions to their respective Plotly equ
 
 ```
 
-# Tidy evaluation
+# Tidy Evaluation
+
+Typically in `dplyr` functions, data-variables (a.k.a column names) are entered directly in the function without any extra syntax (`$` or quotation marks). Data-variables mapped in `ggplot2`’s `aes()` also follow the same concept.
+
+  - `df %>% arrange(count)`
+  - `ggplot(df, aes(x = year, y = count))`
+
+However when the data-variable (e.g. `count`) is stored in a variable (e.g. `my_column <- 'count'`), or as part of another object (e.g. `input$my_input_widget`), additional syntax is required to accommodate this indirection. 
+
+  - for single data-variables: `.data[[ <insert data-variable> ]]`
+  - for multiple data-variables in dplyr: `across(all_of( <insert data-variable> ))`
+
+Let's add a dropdown menu that allows the user to choose which column to sort the table by.
+
+```{r}
+
+ui <- fluidPage(
+  
+  title,
+  src,
+  
+  sidebarLayout(
+    sidebarPanel(
+      txt_box,
+      actionButton("clear", label = "Clear Name"),
+      txt_disp,
+      selectInput("state",
+                  label = 'Select State',
+                  choices = unique(df$state),
+                  selected = 'Washington',
+                  multiple = TRUE),
+      
+      # add dropdowns for user to decide how table is sorted 
+      selectInput('table_sort',
+                  label = 'Sort table by',
+                  choices = c('count', 'sex', 'year')),
+      
+      actionButton("go", label = "Enter")
+    ),
+    mainPanel(
+      fluidRow(
+        column(
+          width = 6,
+          h3("Table"),
+          tbl_disp
+        ),
+        column(
+          width = 6,
+          h3("Plot"),
+          plotlyOutput("plot")
+        )
+      )
+    )
+  )
+  
+)
+```
+
+In the server, apply the `.data[[]]` wrapper inside `arrange()`.
+
+```{r}
+# Server
+
+  filtered_df <- eventReactive(input$go, {
+    df %>%
+      filter(name == clean_name() & state %in% input$state) %>% 
+      arrange(.data[[input$table_sort]]) # add arrange, pass input value using tidy evaluation syntax
+  })
+```
+
+If there are multiple values selected by the user for an input and applied in `dplyr`, wrap the reactive source within `across(all_of())`.
+
+```{r}
+# UI
+
+# add dropdowns for user to decide how table is sorted 
+selectInput('table_sort',
+            label = 'Sort table by',
+            choices = c('count', 'sex', 'year'),
+            multiple = TRUE) # allow more than one selection
+
+```
 
 
+```{r}
+# Server
 
+  filtered_df <- eventReactive(input$go, {
+    df %>%
+      filter(name == clean_name() & state %in% input$state) %>% 
+      arrange(across(all_of(input$table_sort))) # add arrange, pass input value using tidy evaluation syntax
+  })
+```
 

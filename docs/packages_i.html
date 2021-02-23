@@ -86,27 +86,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Packages I</title>
 
-  <meta property="description" itemprop="description" content="Plots with ggplot2 and Plotly"/>
+  <meta property="description" itemprop="description" content="dplyr and plots with ggplot2 &amp; Plotly"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Packages I"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Plots with ggplot2 and Plotly"/>
+  <meta property="og:description" content="dplyr and plots with ggplot2 &amp; Plotly"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Packages I"/>
-  <meta property="twitter:description" content="Plots with ggplot2 and Plotly"/>
+  <meta property="twitter:description" content="dplyr and plots with ggplot2 &amp; Plotly"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages I"]},{"type":"character","attributes":{},"value":["Plots with ggplot2 and Plotly\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages I"]},{"type":"character","attributes":{},"value":["dplyr and plots with ggplot2 & Plotly\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2385,7 +2385,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Packages I","description":"Plots with ggplot2 and Plotly","authors":[]}
+{"title":"Packages I","description":"dplyr and plots with ggplot2 & Plotly","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2430,7 +2430,7 @@ Session One
 <h1>Packages I</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Plots with ggplot2 and Plotly</p></p>
+<p><p>dplyr and plots with ggplot2 &amp; Plotly</p></p>
 </div>
 
 
@@ -2444,7 +2444,7 @@ Session One
 <li><a href="#ggplot2">ggplot2</a></li>
 <li><a href="#plotly">Plotly</a></li>
 </ul></li>
-<li><a href="#tidy-evaluation">Tidy evaluation</a></li>
+<li><a href="#tidy-evaluation">Tidy Evaluation</a></li>
 </ul>
 </nav>
 </div>
@@ -2530,7 +2530,101 @@ Session One
 </code></pre>
 </div>
 </div>
-<h1 id="tidy-evaluation">Tidy evaluation</h1>
+<h1 id="tidy-evaluation">Tidy Evaluation</h1>
+<p>Typically in <code>dplyr</code> functions, data-variables (a.k.a column names) are entered directly in the function without any extra syntax (<code>$</code> or quotation marks). Data-variables mapped in <code>ggplot2</code>’s <code>aes()</code> also follow the same concept.</p>
+<ul>
+<li><code>df %&gt;% arrange(count)</code></li>
+<li><code>ggplot(df, aes(x = year, y = count))</code></li>
+</ul>
+<p>However when the data-variable (e.g. <code>count</code>) is stored in a variable (e.g. <code>my_column &lt;- 'count'</code>), or as part of another object (e.g. <code>input$my_input_widget</code>), additional syntax is required to accommodate this indirection.</p>
+<ul>
+<li>for single data-variables: <code>.data[[ &lt;insert data-variable&gt; ]]</code></li>
+<li>for multiple data-variables in dplyr: <code>across(all_of( &lt;insert data-variable&gt; ))</code></li>
+</ul>
+<p>Let’s add a dropdown menu that allows the user to choose which column to sort the table by.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  
+  <span class='va'>title</span>,
+  <span class='va'>src</span>,
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
+      <span class='va'>txt_box</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"clear"</span>, label <span class='op'>=</span> <span class='st'>"Clear Name"</span><span class='op'>)</span>,
+      <span class='va'>txt_disp</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"state"</span>,
+                  label <span class='op'>=</span> <span class='st'>'Select State'</span>,
+                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>,
+                  selected <span class='op'>=</span> <span class='st'>'Washington'</span>,
+                  multiple <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+      
+      <span class='co'># add dropdowns for user to decide how table is sorted </span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>'table_sort'</span>,
+                  label <span class='op'>=</span> <span class='st'>'Sort table by'</span>,
+                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'count'</span>, <span class='st'>'sex'</span>, <span class='st'>'year'</span><span class='op'>)</span><span class='op'>)</span>,
+      
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"go"</span>, label <span class='op'>=</span> <span class='st'>"Enter"</span><span class='op'>)</span>
+    <span class='op'>)</span>,
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
+          width <span class='op'>=</span> <span class='fl'>6</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Table"</span><span class='op'>)</span>,
+          <span class='va'>tbl_disp</span>
+        <span class='op'>)</span>,
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
+          width <span class='op'>=</span> <span class='fl'>6</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Plot"</span><span class='op'>)</span>,
+          <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/plotly-shiny.html'>plotlyOutput</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
+        <span class='op'>)</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>
+  
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>In the server, apply the <code>.data[[]]</code> wrapper inside <code>arrange()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+
+  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+    <span class='va'>df</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>input</span><span class='op'>$</span><span class='va'>table_sort</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># add arrange, pass input value using tidy evaluation syntax</span>
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>If there are multiple values selected by the user for an input and applied in <code>dplyr</code>, wrap the reactive source within <code>across(all_of())</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI</span>
+
+<span class='co'># add dropdowns for user to decide how table is sorted </span>
+<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>'table_sort'</span>,
+            label <span class='op'>=</span> <span class='st'>'Sort table by'</span>,
+            choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'count'</span>, <span class='st'>'sex'</span>, <span class='st'>'year'</span><span class='op'>)</span>,
+            multiple <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># allow more than one selection</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+
+  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+    <span class='va'>df</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'>across</span><span class='op'>(</span><span class='fu'>all_of</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>table_sort</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># add arrange, pass input value using tidy evaluation syntax</span>
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
