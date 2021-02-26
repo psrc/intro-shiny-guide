@@ -8,18 +8,18 @@ knitr::opts_chunk$set(echo = FALSE)
 library(emo)
 ```
 
+```{r embed-xaringan, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "https://psrc.github.io/intro-shiny/intro-shiny.html", ratio = "4:3")
+```
+
+<aside>
 Shortcut Keys
 
 - `f`: full-screen
 - `Esc`: exit full-screen
 - `o`: tile view
 - `r ji('left_arrow')` `r ji('right_arrow')`: advance slide
-
-```{r embed-xaringan, echo=FALSE}
-xaringanExtra::embed_xaringan(url = "https://psrc.github.io/intro-shiny/intro-shiny.html", ratio = "4:3")
-```
-
-
+</aside>
 
 
 
