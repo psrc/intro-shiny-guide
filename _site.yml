@@ -28,6 +28,8 @@ navbar:
           href: packages_i.html
     - text: "Session Two"
       href: ""
+    - text: "Slides"
+      href: slides.html
     - text: "Resources"
       href: resources.html
 output: 
