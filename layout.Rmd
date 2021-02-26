@@ -12,6 +12,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
+Start with a new file: `intro-shiny/babynames/01-layout/app-baby-01.R`
 
 With inputs and outputs established in the UI, we can arrange them with various layout functions.
 

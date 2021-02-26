@@ -13,6 +13,10 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+# Module Material
+
+Script templates and intermediate scripts prepared for this module can be forked or downloaded from [github](https://github.com/psrc/intro-shiny). 
+
 # Shiny
 
 **[Shiny Gallery's Shiny Demo](https://shiny.rstudio.com/gallery/#demos)**: interactive examples of various Shiny features (individual widgets, layout styles, and reactivity). The source code is displayed as you interact with the examples. It's a great way to learn! 

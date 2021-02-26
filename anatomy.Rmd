@@ -12,6 +12,7 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
+Start with file: `intro-shiny/babynames/00-anatomy/app-baby-00.R`
 
 A Shiny app generally consists of three parts: the **user interface** (UI), the **server**, and a place for **global** variables.
 
