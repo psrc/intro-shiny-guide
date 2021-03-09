@@ -28,6 +28,9 @@ navbar:
         - text: "Packages I"
           href: packages_i.html
     - text: "Session Two"
+      menu:
+        - text: "Packages II"
+          href: packages_ii.html
       href: ""
     - text: "Slides"
       href: slides.html
