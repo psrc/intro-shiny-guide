@@ -10,36 +10,30 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
-Start with a new file: `intro-shiny/babynames/04-packages-02/app-baby-00.R`
+Start with a new file: `intro-shiny/babynames/04-packages-02/app-baby-04.R`
 
-Allow users to sort or filter your tables without having to expand the UI. Simply use packages such as [DT](https://rstudio.github.io/DT/) or `Reactable` to present data frames as interactive tables. 
+Allow users to sort or filter your tables without having to expand the UI. Simply use packages such as [DT](https://rstudio.github.io/DT/) or [Reactable](https://glin.github.io/reactable/) to present data frames as interactive tables. 
 
 # DT
 
-DT stands for data table (not to be confused with the wrangling/processing package `data.table`). Like, `Plotly`, DT is part of the htmlwidgets family. Developers have taken the JavaScript version of DT and bound it with R. We don't have to learn JS in order to experience the benefits of it!
+DT stands for data table (not to be confused with the wrangling/processing package `data.table`). Like, `Plotly`, DT is part of the [htmlwidgets](https://www.htmlwidgets.org/) family. Developers have taken the JavaScript version of DT and bound it with R. We don't have to learn JS in order to experience its benefits!
 
 Load package
+
 ```{r}
 library(DT)
 ```
 
 Update the output and render functions
+
 ```{r}
 # UI
 
-title <- titlePanel("U.S. Baby Names")
-src <- p("Source:",
-         tags$a(href = "https://www.ssa.gov/oact/babynames/limits.html",
-                "Social Security Administration"))
-txt_box <- textInput("name", 
-          label = "Enter name",
-          placeholder = "Jane")
-txt_disp <- textOutput("name_entered")
-
 # in lieu of tableOutput(), use DT's version
 tbl_disp <- DTOutput("main_table")
+
 ```
 
 ```{r}
@@ -50,6 +44,64 @@ tbl_disp <- DTOutput("main_table")
     filtered_df()
   })
 ```
+
+## Options
+
+DT offers options to customise the appearance of your table without manipulating the data itself.
+
+```{r}
+# Server
+
+  output$main_table <- renderDT({
+    df <- filtered_df()
+    
+    # customize the appearance of the DT
+    datatable(df,
+              colnames = str_to_title(str_replace_all(colnames(df), "_", " ")),
+              options = list(pageLength = 20,
+                             lengthMenu = c(20, 50, 100))
+              )
+    
+  })
+```
+
+## Format Styling
+
+It's possible to style the table with some helper functions.
+https://rstudio.github.io/DT/functions.html
+https://rstudio.github.io/DT/010-style.html
+
+```{r}
+# Server
+
+ output$main_table <- renderDT({
+    df <- filtered_df()
+    
+    datatable(df,
+              colnames = str_to_title(str_replace_all(colnames(df), "_", " ")),
+              options = list(pageLength = 20,
+                             lengthMenu = c(20, 60, 100))
+              ) %>%
+      
+      # conditional styling of cell value. The color of 'name' is based on 'sex'
+      formatStyle('name',
+                  'sex',
+                  color = styleEqual(unique(df$sex), c('dodgerblue', 'orange'))
+      ) %>% 
+      
+      # add a color bar to a numeric column.
+      formatStyle('count',
+                  background = styleColorBar(df$count, 'rgba(0, 128, 255, .2)'),
+                  backgroundSize = '100% 90%',
+                  backgroundRepeat = 'no-repeat',
+                  backgroundPosition = 'center'
+                  )
+    
+  })
+```
+
+
+## Extensions
 
 # Honorable Mention: Reactable
 

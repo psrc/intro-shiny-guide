@@ -31,7 +31,6 @@ navbar:
       menu:
         - text: "Packages II"
           href: packages_ii.html
-      href: ""
     - text: "Slides"
       href: slides.html
     - text: "Resources"
