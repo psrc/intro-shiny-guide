@@ -86,7 +86,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Packages II</title>
 
-  <meta property="description" itemprop="description" content="Tables with DT"/>
+  <meta property="description" itemprop="description" content="Interactive tables with DT"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
@@ -94,20 +94,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Packages II"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Tables with DT"/>
+  <meta property="og:description" content="Interactive tables with DT"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Packages II"/>
-  <meta property="twitter:description" content="Tables with DT"/>
+  <meta property="twitter:description" content="Interactive tables with DT"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages II"]},{"type":"character","attributes":{},"value":["Tables with DT\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages II"]},{"type":"character","attributes":{},"value":["Interactive tables with DT\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2386,7 +2386,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Packages II","description":"Tables with DT","authors":[]}
+{"title":"Packages II","description":"Interactive tables with DT","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2441,7 +2441,7 @@ Session Two
 <h1>Packages II</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Tables with DT</p></p>
+<p><p>Interactive tables with DT</p></p>
 </div>
 
 
@@ -2452,9 +2452,11 @@ Session Two
 <ul>
 <li><a href="#dt">DT</a>
 <ul>
-<li><a href="#options">Options</a></li>
-<li><a href="#format-styling">Format Styling</a></li>
-<li><a href="#extensions">Extensions</a></li>
+<li><a href="#options">Options</a>
+<ul>
+<li><a href="#hide-columns">Hide Columns</a></li>
+</ul></li>
+<li><a href="#format-styling">Format &amp; Styling</a></li>
 </ul></li>
 <li><a href="#honorable-mention-reactable">Honorable Mention: Reactable</a></li>
 </ul>
@@ -2464,14 +2466,14 @@ Session Two
 <p>Allow users to sort or filter your tables without having to expand the UI. Simply use packages such as <a href="https://rstudio.github.io/DT/">DT</a> or <a href="https://glin.github.io/reactable/">Reactable</a> to present data frames as interactive tables.</p>
 <h1 id="dt">DT</h1>
 <p>DT stands for data table (not to be confused with the wrangling/processing package <code>data.table</code>). Like, <code>Plotly</code>, DT is part of the <a href="https://www.htmlwidgets.org/">htmlwidgets</a> family. Developers have taken the JavaScript version of DT and bound it with R. We don’t have to learn JS in order to experience its benefits!</p>
-<p>Load package</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/DT'>DT</a></span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Load package</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/DT'>DT</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>Update the output and render functions</p>
+<p>Change the output and render function names.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI</span>
@@ -2493,7 +2495,7 @@ Session Two
 </div>
 </div>
 <h2 id="options">Options</h2>
-<p>DT offers options to customise the appearance of your table without manipulating the data itself.</p>
+<p>DT offers options to customize the appearance of your table without manipulating the data itself.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
@@ -2503,17 +2505,71 @@ Session Two
     
     <span class='co'># customize the appearance of the DT</span>
     <span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>df</span>,
+              rownames <span class='op'>=</span> <span class='cn'>FALSE</span>,
               colnames <span class='op'>=</span> <span class='fu'>str_to_title</span><span class='op'>(</span><span class='fu'>str_replace_all</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>, <span class='st'>"_"</span>, <span class='st'>" "</span><span class='op'>)</span><span class='op'>)</span>,
               options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pageLength <span class='op'>=</span> <span class='fl'>20</span>,
-                             lengthMenu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>50</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
+                             lengthMenu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>60</span>, <span class='fl'>100</span><span class='op'>)</span>,
+                             dom <span class='op'>=</span> <span class='st'>'ltipr'</span> <span class='co'># default is 'lftipr', exclude f to remove search bar </span>
+                             <span class='op'>)</span>,
+              filter <span class='op'>=</span> <span class='st'>'top'</span>
               <span class='op'>)</span>
-    
+   
   <span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<h2 id="format-styling">Format Styling</h2>
-<p>It’s possible to style the table with some helper functions. <a href="https://rstudio.github.io/DT/functions.html" class="uri">https://rstudio.github.io/DT/functions.html</a> <a href="https://rstudio.github.io/DT/010-style.html" class="uri">https://rstudio.github.io/DT/010-style.html</a></p>
+<p>By default DT includes some table control elements such as page length, pagination, and the filter (search) bar. Toggle these elements with the <code>dom</code> keyword argument. The <code>dom</code> options and their definitions can be found here: <a href="https://datatables.net/reference/option/dom">https://datatables.net/reference/option/dom</a></p>
+<h3 id="hide-columns">Hide Columns</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDT</a></span><span class='op'>(</span><span class='op'>{</span>
+    
+    <span class='co'># remove the last three columns</span>
+    <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span><span class='op'>-</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>
+    
+    <span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>df</span>,
+              rownames <span class='op'>=</span> <span class='cn'>FALSE</span>,
+              colnames <span class='op'>=</span> <span class='fu'>str_to_title</span><span class='op'>(</span><span class='fu'>str_replace_all</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>, <span class='st'>"_"</span>, <span class='st'>" "</span><span class='op'>)</span><span class='op'>)</span>,
+              options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pageLength <span class='op'>=</span> <span class='fl'>20</span>,
+                             lengthMenu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>60</span>, <span class='fl'>100</span><span class='op'>)</span>,
+                             dom <span class='op'>=</span> <span class='st'>'ltipr'</span> <span class='co'># default is 'lftipr', exclude f to remove search bar </span>
+                             <span class='op'>)</span>,
+              filter <span class='op'>=</span> <span class='st'>'top'</span>
+              <span class='op'>)</span>
+   
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>In the previous example, to remove the last three columns from the table we manipulated the data frame itself. In lieu of altering the data, it’s possible to use DT to simply hide the columns using the <code>columnDefs</code> argument within <code>options</code>. There are, however, several quirks to know!</p>
+<ol type="1">
+<li>The targets argument require a numeric vector. Column names don’t work.</li>
+<li>The first column in the DT is 0.</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>...</span>,
+          options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>columnDefs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>visible <span class='op'>=</span> <span class='cn'>FALSE</span>, targets <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+          <span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="format-styling">Format &amp; Styling</h2>
+<p>Format and style the table with some <a href="https://rstudio.github.io/DT/functions.html">helper functions</a>. Without manipulating the data itself, table columns can be displayed as currency, percentages, round numbers, or dates.</p>
+<ul>
+<li><code>formatCurrency()</code></li>
+<li><code>formatPercentage()</code></li>
+<li><code>formatRound()</code></li>
+<li><code>formatDate()</code></li>
+</ul>
+<p>Additionally, <a href="https://rstudio.github.io/DT/010-style.html">styles</a> can also be applied to table cells with the help of a few helping functions:</p>
+<ul>
+<li><code>styleInterval()</code>: style for intervals of data.</li>
+<li><code>styleColorBar()</code>: displaying a color bar in the cell. Its size is relative to the share of the largest value in the column.</li>
+<li><code>styleEqual()</code>: style based on unique values.</li>
+</ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
@@ -2527,7 +2583,7 @@ Session Two
                              lengthMenu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>60</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
               <span class='op'>)</span> <span class='op'>%&gt;%</span>
       
-      <span class='co'># conditional styling of cell value. The color of 'name' is based on 'sex'</span>
+      <span class='co'># conditional styling of cell value. The font color of 'name' is based on 'sex'</span>
       <span class='fu'><a href='https://rdrr.io/pkg/DT/man/formatCurrency.html'>formatStyle</a></span><span class='op'>(</span><span class='st'>'name'</span>,
                   <span class='st'>'sex'</span>,
                   color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/DT/man/styleInterval.html'>styleEqual</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>sex</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'dodgerblue'</span>, <span class='st'>'orange'</span><span class='op'>)</span><span class='op'>)</span>
@@ -2545,7 +2601,6 @@ Session Two
 </code></pre>
 </div>
 </div>
-<h2 id="extensions">Extensions</h2>
 <h1 id="honorable-mention-reactable">Honorable Mention: Reactable</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

@@ -29,8 +29,8 @@ In this two part module, we'll walk through how to get started, peek inside the 
 |Session One | Session Two|
 |:------------|:------------|
 |Getting Started| Packages II|
-|Anatomy, Inputs & Outputs | Multi-file apps |
-|Layout| Styling |
+|Anatomy, Inputs & Outputs | Styling |
+|Layout| Multi-file apps |
 |Reactivity| Deploy |
 |Packages I | Shiny Cousins and Friends|
 

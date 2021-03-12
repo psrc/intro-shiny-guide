@@ -1,7 +1,7 @@
 ---
 title: "Packages II"
 description: |
-  Tables with DT
+  Interactive tables with DT
 output: 
   distill::distill_article:
     toc: true
@@ -20,13 +20,12 @@ Allow users to sort or filter your tables without having to expand the UI. Simpl
 
 DT stands for data table (not to be confused with the wrangling/processing package `data.table`). Like, `Plotly`, DT is part of the [htmlwidgets](https://www.htmlwidgets.org/) family. Developers have taken the JavaScript version of DT and bound it with R. We don't have to learn JS in order to experience its benefits!
 
-Load package
-
 ```{r}
+# Load package
 library(DT)
 ```
 
-Update the output and render functions
+Change the output and render function names.
 
 ```{r}
 # UI
@@ -47,7 +46,7 @@ tbl_disp <- DTOutput("main_table")
 
 ## Options
 
-DT offers options to customise the appearance of your table without manipulating the data itself.
+DT offers options to customize the appearance of your table without manipulating the data itself.
 
 ```{r}
 # Server
@@ -57,19 +56,69 @@ DT offers options to customise the appearance of your table without manipulating
     
     # customize the appearance of the DT
     datatable(df,
+              rownames = FALSE,
               colnames = str_to_title(str_replace_all(colnames(df), "_", " ")),
               options = list(pageLength = 20,
-                             lengthMenu = c(20, 50, 100))
+                             lengthMenu = c(20, 60, 100),
+                             dom = 'ltipr' # default is 'lftipr', exclude f to remove search bar 
+                             ),
+              filter = 'top'
               )
-    
+   
   })
 ```
 
-## Format Styling
+By default DT includes some table control elements such as page length, pagination, and the filter (search) bar. Toggle these elements with the `dom` keyword argument. The `dom` options and their definitions can be found here: [https://datatables.net/reference/option/dom](https://datatables.net/reference/option/dom)
 
-It's possible to style the table with some helper functions.
-https://rstudio.github.io/DT/functions.html
-https://rstudio.github.io/DT/010-style.html
+### Hide Columns
+
+```{r}
+# Server
+
+  output$main_table <- renderDT({
+    
+    # remove the last three columns
+    df <- filtered_df()[, 1:(ncol(df)-3)]
+    
+    datatable(df,
+              rownames = FALSE,
+              colnames = str_to_title(str_replace_all(colnames(df), "_", " ")),
+              options = list(pageLength = 20,
+                             lengthMenu = c(20, 60, 100),
+                             dom = 'ltipr' # default is 'lftipr', exclude f to remove search bar 
+                             ),
+              filter = 'top'
+              )
+   
+  })
+
+```
+
+In the previous example, to remove the last three columns from the table we manipulated the data frame itself. In lieu of altering the data, it's possible to use DT to simply hide the columns using the `columnDefs` argument within `options`. There are, however, several quirks to know!
+
+1) The targets argument require a numeric vector. Column names don't work.
+2) The first column in the DT is 0.
+
+```{r}
+datatable(...,
+          options = list(columnDefs = list(list(visible = FALSE, targets = c(5, 6, 7))))
+          )
+```
+
+## Format & Styling
+
+Format and style the table with some [helper functions](https://rstudio.github.io/DT/functions.html). Without manipulating the data itself, table columns can be displayed as currency, percentages, round numbers, or dates.
+
+- `formatCurrency()`
+- `formatPercentage()`
+- `formatRound()`
+- `formatDate()`
+
+Additionally, [styles](https://rstudio.github.io/DT/010-style.html) can also be applied to table cells with the help of a few helping functions:
+
+- `styleInterval()`: style for intervals of data.
+- `styleColorBar()`: displaying a color bar in the cell. Its size is relative to the share of the largest value in the column.
+- `styleEqual()`: style based on unique values.
 
 ```{r}
 # Server
@@ -83,7 +132,7 @@ https://rstudio.github.io/DT/010-style.html
                              lengthMenu = c(20, 60, 100))
               ) %>%
       
-      # conditional styling of cell value. The color of 'name' is based on 'sex'
+      # conditional styling of cell value. The font color of 'name' is based on 'sex'
       formatStyle('name',
                   'sex',
                   color = styleEqual(unique(df$sex), c('dodgerblue', 'orange'))
@@ -100,8 +149,6 @@ https://rstudio.github.io/DT/010-style.html
   })
 ```
 
-
-## Extensions
 
 # Honorable Mention: Reactable
 
