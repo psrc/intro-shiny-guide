@@ -94,12 +94,14 @@ By default DT includes some table control elements such as page length, paginati
 
 ```
 
-In the previous example, to remove the last three columns from the table we manipulated the data frame itself. In lieu of altering the data, it's possible to use DT to simply hide the columns using the `columnDefs` argument within `options`. There are, however, several quirks to know!
+In the previous example, to remove the last three columns from the table we manipulated the data frame itself. In lieu of altering the data, it's possible to use DT to simply hide the columns by using the `columnDefs` argument within `options`. There are, however, several quirks to know!
 
 1) The targets argument require a numeric vector. Column names don't work.
-2) The first column in the DT is 0.
+2) The first column in the DT is 0 not 1.
 
 ```{r}
+
+# hiding the last 3 columns in an 8 column table.
 datatable(...,
           options = list(columnDefs = list(list(visible = FALSE, targets = c(5, 6, 7))))
           )
@@ -123,16 +125,23 @@ Additionally, [styles](https://rstudio.github.io/DT/010-style.html) can also be 
 ```{r}
 # Server
 
- output$main_table <- renderDT({
-    df <- filtered_df()
+   output$main_table <- renderDT({
     
+    # remove last three columns
+    df <- filtered_df()[, 1:(ncol(df)-3)]
+    
+    # customize the appearance of the DT
     datatable(df,
+              rownames = FALSE,
               colnames = str_to_title(str_replace_all(colnames(df), "_", " ")),
               options = list(pageLength = 20,
-                             lengthMenu = c(20, 60, 100))
+                             lengthMenu = c(20, 60, 100),
+                             dom = 'ltipr' # default is 'lftipr'
+                             ),
+              filter = 'top'
               ) %>%
       
-      # conditional styling of cell value. The font color of 'name' is based on 'sex'
+      # conditional styling of cell text
       formatStyle('name',
                   'sex',
                   color = styleEqual(unique(df$sex), c('dodgerblue', 'orange'))
@@ -150,7 +159,7 @@ Additionally, [styles](https://rstudio.github.io/DT/010-style.html) can also be 
 ```
 
 
-# Honorable Mention: Reactable
+# Reactable
 
 
 

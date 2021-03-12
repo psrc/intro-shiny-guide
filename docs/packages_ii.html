@@ -2458,7 +2458,7 @@ Session Two
 </ul></li>
 <li><a href="#format-styling">Format &amp; Styling</a></li>
 </ul></li>
-<li><a href="#honorable-mention-reactable">Honorable Mention: Reactable</a></li>
+<li><a href="#reactable">Reactable</a></li>
 </ul>
 </nav>
 </div>
@@ -2543,14 +2543,15 @@ Session Two
 </code></pre>
 </div>
 </div>
-<p>In the previous example, to remove the last three columns from the table we manipulated the data frame itself. In lieu of altering the data, it’s possible to use DT to simply hide the columns using the <code>columnDefs</code> argument within <code>options</code>. There are, however, several quirks to know!</p>
+<p>In the previous example, to remove the last three columns from the table we manipulated the data frame itself. In lieu of altering the data, it’s possible to use DT to simply hide the columns by using the <code>columnDefs</code> argument within <code>options</code>. There are, however, several quirks to know!</p>
 <ol type="1">
 <li>The targets argument require a numeric vector. Column names don’t work.</li>
-<li>The first column in the DT is 0.</li>
+<li>The first column in the DT is 0 not 1.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>...</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># hiding the last 3 columns in an 8 column table.</span>
+<span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>...</span>,
           options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>columnDefs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>visible <span class='op'>=</span> <span class='cn'>FALSE</span>, targets <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>6</span>, <span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
           <span class='op'>)</span>
 </code></pre>
@@ -2574,16 +2575,23 @@ Session Two
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
 
- <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDT</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span>
+   <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/DT/man/dataTableOutput.html'>renderDT</a></span><span class='op'>(</span><span class='op'>{</span>
     
+    <span class='co'># remove last three columns</span>
+    <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span><span class='op'>-</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>
+    
+    <span class='co'># customize the appearance of the DT</span>
     <span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>df</span>,
+              rownames <span class='op'>=</span> <span class='cn'>FALSE</span>,
               colnames <span class='op'>=</span> <span class='fu'>str_to_title</span><span class='op'>(</span><span class='fu'>str_replace_all</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>, <span class='st'>"_"</span>, <span class='st'>" "</span><span class='op'>)</span><span class='op'>)</span>,
               options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>pageLength <span class='op'>=</span> <span class='fl'>20</span>,
-                             lengthMenu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>60</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
+                             lengthMenu <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>60</span>, <span class='fl'>100</span><span class='op'>)</span>,
+                             dom <span class='op'>=</span> <span class='st'>'ltipr'</span> <span class='co'># default is 'lftipr'</span>
+                             <span class='op'>)</span>,
+              filter <span class='op'>=</span> <span class='st'>'top'</span>
               <span class='op'>)</span> <span class='op'>%&gt;%</span>
       
-      <span class='co'># conditional styling of cell value. The font color of 'name' is based on 'sex'</span>
+      <span class='co'># conditional styling of cell text</span>
       <span class='fu'><a href='https://rdrr.io/pkg/DT/man/formatCurrency.html'>formatStyle</a></span><span class='op'>(</span><span class='st'>'name'</span>,
                   <span class='st'>'sex'</span>,
                   color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/DT/man/styleInterval.html'>styleEqual</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>sex</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'dodgerblue'</span>, <span class='st'>'orange'</span><span class='op'>)</span><span class='op'>)</span>
@@ -2601,7 +2609,7 @@ Session Two
 </code></pre>
 </div>
 </div>
-<h1 id="honorable-mention-reactable">Honorable Mention: Reactable</h1>
+<h1 id="reactable">Reactable</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
