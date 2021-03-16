@@ -84,30 +84,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Intro to Shiny: Packages I</title>
+  <title>Intro to Shiny: Styling</title>
 
-  <meta property="description" itemprop="description" content="dplyr and plots with ggplot2 &amp; Plotly"/>
+  <meta property="description" itemprop="description" content="bslib, shinythemes, and css in a nutshell"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Intro to Shiny: Packages I"/>
+  <meta property="og:title" content="Intro to Shiny: Styling"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="dplyr and plots with ggplot2 &amp; Plotly"/>
+  <meta property="og:description" content="bslib, shinythemes, and css in a nutshell"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Intro to Shiny: Packages I"/>
-  <meta property="twitter:description" content="dplyr and plots with ggplot2 &amp; Plotly"/>
+  <meta property="twitter:title" content="Intro to Shiny: Styling"/>
+  <meta property="twitter:description" content="bslib, shinythemes, and css in a nutshell"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Packages I"]},{"type":"character","attributes":{},"value":["dplyr and plots with ggplot2 & Plotly\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Styling"]},{"type":"character","attributes":{},"value":["bslib, shinythemes, and css in a nutshell\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2386,7 +2386,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Packages I","description":"dplyr and plots with ggplot2 & Plotly","authors":[]}
+{"title":"Styling","description":"bslib, shinythemes, and css in a nutshell","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2439,10 +2439,10 @@ Session Two
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Packages I</h1>
+<h1>Styling</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>dplyr and plots with ggplot2 &amp; Plotly</p></p>
+<p><p>bslib, shinythemes, and css in a nutshell</p></p>
 </div>
 
 
@@ -2451,193 +2451,66 @@ Session Two
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#plots">Plots</a>
-<ul>
-<li><a href="#ggplot2">ggplot2</a></li>
-<li><a href="#plotly">Plotly</a></li>
-</ul></li>
-<li><a href="#tidy-evaluation">Tidy Evaluation</a></li>
+<li><a href="#shinythemes"><code>shinythemes</code></a></li>
+<li><a href="#bslib"><code>bslib</code></a></li>
+<li><a href="#css">CSS</a></li>
 </ul>
 </nav>
 </div>
-<p>Shiny provides the basic tools for client-server interaction, but a lot of parts that make up an app–how it wrangles and displays data, can come from packages of your choice. All of the packages introduced in the R Learning Series so far (<code>dplyr</code>, <code>ggplot2</code>, <code>plotly</code>, <code>data.table</code>, <code>R markdown</code>, <code>sf</code>, <code>leaflet</code>) can be included in Shiny.</p>
-<h1 id="plots">Plots</h1>
-<p><code>ggplot2</code> can be used with the standard <code>plotOutput()</code> and <code>renderPlot({})</code> functions.</p>
-<h2 id="ggplot2">ggplot2</h2>
+<h1 id="shinythemes"><code>shinythemes</code></h1>
+<p><a href="https://rstudio.github.io/shinythemes/">shinythemes</a> is an easy alternative to the default bootstrap theme that is inherent in Shiny. Depending on the theme, it can change fonts, sizing, and color palettes.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
-
-  <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
-    <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-      <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>count</span>, color <span class='op'>=</span> <span class='va'>state</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-        <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-        <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='fu'>vars</span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span>
-  <span class='op'>}</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rstudio.github.io/shinythemes/'>shinythemes</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<p>To add more content to our plot (and table), enable the dropdown menu to allow the user to select multiple states.</p>
+After loading the library, apply one of the shiny themes as seen here: <a href="https://rstudio.github.io/shinythemes/" class="uri">https://rstudio.github.io/shinythemes/</a>.
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI </span>
-
-  <span class='co'># add multiple argument to allow more than one selection</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"state"</span>,
-              label <span class='op'>=</span> <span class='st'>'Select State'</span>,
-              choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>,
-              selected <span class='op'>=</span> <span class='st'>'Washington'</span>,
-              multiple <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UI</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># apply a shiny theme</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme =</span> <span class="fu">shinytheme</span>(<span class="st">&quot;flatly&quot;</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  title,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  src,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-</div>
+Use the theme selector to try out different themes before committing to one.
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
-
- <span class='co'># allow filtering of multiple states with `%in%`</span>
-  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
-    <span class='va'>df</span> <span class='op'>%&gt;%</span> 
-      <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>
-  <span class='op'>}</span><span class='op'>)</span>
-</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UI</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># test different shiny themes with the theme selector</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">themeSelector</span>(),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  title,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  src,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-</div>
-<h2 id="plotly">Plotly</h2>
-<p><a href="https://plotly.com/ggplot2/">Plotly</a>, a package that helps create interactive graphs, can be used to convert a static <code>ggplot2</code> graph into an interactive one. <a href="https://plotly.com/r/">Plotly</a> on its own can also be used in lieu of ggplot2.</p>
-<p>To render Plotly graphs in Shiny, use <code>plotlyOutput()</code> and <code>renderPlotly({})</code> in lieu of the standard plot output and render functions.</p>
-<p>Include the <code>plotly</code> package in the global section.</p>
+<h1 id="bslib"><code>bslib</code></h1>
+<h1 id="css">CSS</h1>
+<p>CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. For anyone who has used extensive CSS, frustration is a common theme!</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://plotly-r.com'>plotly</a></span><span class='op'>)</span>
-</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="https://img.devrant.com/devrant/rant/r_236669_egRwe.gif" alt="Working with CSS. We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell." width="80%" />
+<p class="caption">
+Figure 1: Working with CSS. We Bare Bears. <a href="https://devrant.com/rants/236669/css-in-a-nutshell" class="uri">https://devrant.com/rants/236669/css-in-a-nutshell</a>.
+</p>
 </div>
 </div>
-<p>Convert existing plot output and render functions to their respective Plotly equivalent.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI</span>
-
-  <span class='co'># convert plotOutput to a Plotly Output</span>
-  <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/plotly-shiny.html'>plotlyOutput</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
-  
-  <span class='co'># convert renderPlot to renderPlotly</span>
-  <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/plotly-shiny.html'>renderPlotly</a></span><span class='op'>(</span><span class='op'>{</span>
-    
-    <span class='co'># create ggplot object</span>
-    <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-      <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>year</span>, y <span class='op'>=</span> <span class='va'>count</span>, color <span class='op'>=</span> <span class='va'>state</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-        <span class='fu'>geom_line</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-        <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='fu'>vars</span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>2</span>, scales <span class='op'>=</span> <span class='st'>"free_y"</span><span class='op'>)</span>
-    
-    <span class='co'># wrap ggplot object with ggplotly</span>
-    <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/ggplotly.html'>ggplotly</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span>
-  <span class='op'>}</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<h1 id="tidy-evaluation">Tidy Evaluation</h1>
-<p>Typically in <code>dplyr</code> functions, data-variables (a.k.a column names) are entered directly in the function without any extra syntax (<code>$</code> or quotation marks). Data-variables mapped in <code>ggplot2</code>’s <code>aes()</code> also follow the same concept.</p>
-<ul>
-<li><code>df %&gt;% arrange(count)</code></li>
-<li><code>ggplot(df, aes(x = year, y = count))</code></li>
-</ul>
-<p>However when the data-variable (e.g. <code>count</code>) is stored in a variable (e.g. <code>my_column &lt;- 'count'</code>), or as part of another object (e.g. <code>input$my_input_widget</code>), additional syntax is required to accommodate this indirection.</p>
-<ul>
-<li>for single data-variables: <code>.data[[ &lt;insert data-variable&gt; ]]</code></li>
-<li>for multiple data-variables in dplyr: <code>across(all_of( &lt;insert data-variable&gt; ))</code></li>
-</ul>
-<p>Let’s add a dropdown menu that allows the user to choose which column to sort the table by.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
-  
-  <span class='va'>title</span>,
-  <span class='va'>src</span>,
-  
-  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
-      <span class='va'>txt_box</span>,
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"clear"</span>, label <span class='op'>=</span> <span class='st'>"Clear Name"</span><span class='op'>)</span>,
-      <span class='va'>txt_disp</span>,
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>"state"</span>,
-                  label <span class='op'>=</span> <span class='st'>'Select State'</span>,
-                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span>,
-                  selected <span class='op'>=</span> <span class='st'>'Washington'</span>,
-                  multiple <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
-      
-      <span class='co'># add dropdowns for user to decide how table is sorted </span>
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>'table_sort'</span>,
-                  label <span class='op'>=</span> <span class='st'>'Sort table by'</span>,
-                  choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'count'</span>, <span class='st'>'sex'</span>, <span class='st'>'year'</span><span class='op'>)</span><span class='op'>)</span>,
-      
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"go"</span>, label <span class='op'>=</span> <span class='st'>"Enter"</span><span class='op'>)</span>
-    <span class='op'>)</span>,
-    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
-      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
-          width <span class='op'>=</span> <span class='fl'>6</span>,
-          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Table"</span><span class='op'>)</span>,
-          <span class='va'>tbl_disp</span>
-        <span class='op'>)</span>,
-        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>
-          width <span class='op'>=</span> <span class='fl'>6</span>,
-          <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Plot"</span><span class='op'>)</span>,
-          <span class='fu'><a href='https://docs.ropensci.org/plotly/reference/plotly-shiny.html'>plotlyOutput</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>
-        <span class='op'>)</span>
-      <span class='op'>)</span>
-    <span class='op'>)</span>
-  <span class='op'>)</span>
-  
-<span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>In the server, apply the <code>.data[[]]</code> wrapper inside <code>arrange()</code>.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
-
-  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
-    <span class='va'>df</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>.data</span><span class='op'>[[</span><span class='va'>input</span><span class='op'>$</span><span class='va'>table_sort</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># add arrange, pass input value using tidy evaluation syntax</span>
-  <span class='op'>}</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<p>If there are multiple values selected by the user for an input and applied in <code>dplyr</code>, wrap the reactive source within <code>across(all_of())</code>.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI</span>
-
-<span class='co'># add dropdowns for user to decide how table is sorted </span>
-<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/selectInput.html'>selectInput</a></span><span class='op'>(</span><span class='st'>'table_sort'</span>,
-            label <span class='op'>=</span> <span class='st'>'Sort table by'</span>,
-            choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'count'</span>, <span class='st'>'sex'</span>, <span class='st'>'year'</span><span class='op'>)</span>,
-            multiple <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># allow more than one selection</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
-
-  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
-    <span class='va'>df</span> <span class='op'>%&gt;%</span>
-      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='fu'>clean_name</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'>across</span><span class='op'>(</span><span class='fu'>all_of</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>table_sort</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># add arrange, pass input value using tidy evaluation syntax</span>
-  <span class='op'>}</span><span class='op'>)</span>
-</code></pre>
-</div>
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

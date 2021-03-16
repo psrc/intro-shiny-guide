@@ -1,0 +1,76 @@
+---
+title: "Styling"
+description: |
+  bslib, shinythemes, and css in a nutshell
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+# `shinythemes`
+
+[shinythemes](https://rstudio.github.io/shinythemes/) is an easy alternative to the default bootstrap theme that is inherent in Shiny. Depending on the theme, it can change fonts, sizing, and color palettes.
+
+```{r}
+library(shinythemes)
+```
+
+After loading the library, apply one of the shiny themes as seen here: https://rstudio.github.io/shinythemes/.
+```{r}
+# UI
+
+ui <- fluidPage(
+  
+  # apply a shiny theme
+  theme = shinytheme("flatly"),
+  
+  title,
+  src,
+  
+  .
+  .
+  .
+)
+```
+
+Use the theme selector to try out different themes before committing to one.
+```{r}
+# UI
+
+ui <- fluidPage(
+  
+  # test different shiny themes with the theme selector
+  themeSelector(),
+  
+  title,
+  src,
+  
+  .
+  .
+  .
+)
+```
+
+
+# `bslib`
+
+
+# CSS
+
+CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. For anyone who has used extensive CSS, frustration is a common theme! 
+
+```{r, echo=FALSE, eval = TRUE, out.width="80%", fig.cap="Working with CSS. We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell."}
+knitr::include_graphics("https://img.devrant.com/devrant/rant/r_236669_egRwe.gif")
+```
+
+
+
+
+
+

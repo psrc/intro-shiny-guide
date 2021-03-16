@@ -2425,6 +2425,7 @@ Session Two
 </button>
 <div class="nav-dropdown-content">
 <a href="packages_ii.html">Packages II</a>
+<a href="styling.html">Styling</a>
 </div>
 </div>
 <a href="slides.html">Slides</a>
@@ -2565,7 +2566,7 @@ Session Two
 <li><code>formatRound()</code></li>
 <li><code>formatDate()</code></li>
 </ul>
-<p>Additionally, <a href="https://rstudio.github.io/DT/010-style.html">styles</a> can also be applied to table cells with the help of a few helping functions:</p>
+<p>Additionally, <a href="https://rstudio.github.io/DT/010-style.html">styles</a> can also be applied to table cells with a few helping functions:</p>
 <ul>
 <li><code>styleInterval()</code>: style for intervals of data.</li>
 <li><code>styleColorBar()</code>: displaying a color bar in the cell. Its size is relative to the share of the largest value in the column.</li>
@@ -2609,7 +2610,19 @@ Session Two
 </code></pre>
 </div>
 </div>
+<p>Keyword arguments in <code>formatStyle()</code> are simply CSS properties. Properties are written in camel case (<code>backgroundSize</code>) instead of kebab case (<code>background-size</code>).</p>
 <h1 id="reactable">Reactable</h1>
+<p><a href="https://glin.github.io/reactable/">Reactable</a> is a more recent interactive data table package. It is similar to DT but also includes additional features such as:</p>
+<ul>
+<li><a href="https://glin.github.io/reactable/articles/examples.html#embedding-html-widgets">embedding htmlwidgets</a> (e.g. sparklines, boxplots, etc.) within cells.</li>
+<li><a href="https://glin.github.io/reactable/articles/examples.html#custom-rendering-1">other custom rendering</a></li>
+<li><a href="https://glin.github.io/reactable/articles/examples.html#grouping-and-aggregation-1">custom grouping and aggregation</a></li>
+<li><a href="https://glin.github.io/reactable/articles/examples.html#nested-tables-1">expandable row details</a></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<iframe src="https://glin.github.io/reactable/articles/womens-world-cup/womens-world-cup.html" width="624" height="400px">
+</iframe>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

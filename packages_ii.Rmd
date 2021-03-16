@@ -116,7 +116,7 @@ Format and style the table with some [helper functions](https://rstudio.github.i
 - `formatRound()`
 - `formatDate()`
 
-Additionally, [styles](https://rstudio.github.io/DT/010-style.html) can also be applied to table cells with the help of a few helping functions:
+Additionally, [styles](https://rstudio.github.io/DT/010-style.html) can also be applied to table cells with a few helping functions:
 
 - `styleInterval()`: style for intervals of data.
 - `styleColorBar()`: displaying a color bar in the cell. Its size is relative to the share of the largest value in the column.
@@ -158,10 +158,19 @@ Additionally, [styles](https://rstudio.github.io/DT/010-style.html) can also be 
   })
 ```
 
+Keyword arguments in `formatStyle()` are simply CSS properties. Properties are written in camel case (`backgroundSize`) instead of kebab case (`background-size`).
 
 # Reactable
 
+[Reactable](https://glin.github.io/reactable/) is a more recent interactive data table package. It is similar to DT but also includes additional features such as:
 
+- [embedding htmlwidgets](https://glin.github.io/reactable/articles/examples.html#embedding-html-widgets) (e.g. sparklines, boxplots, etc.) within cells.
+- [other custom rendering](https://glin.github.io/reactable/articles/examples.html#custom-rendering-1)
+- [custom grouping and aggregation](https://glin.github.io/reactable/articles/examples.html#grouping-and-aggregation-1)
+- [expandable row details](https://glin.github.io/reactable/articles/examples.html#nested-tables-1)
 
+```{r, echo = FALSE, eval = TRUE}
+knitr::include_url("https://glin.github.io/reactable/articles/womens-world-cup/womens-world-cup.html")
+```
 
 
