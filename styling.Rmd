@@ -22,6 +22,7 @@ library(shinythemes)
 ```
 
 After loading the library, apply one of the shiny themes as seen here: https://rstudio.github.io/shinythemes/.
+
 ```{r}
 # UI
 
@@ -39,7 +40,8 @@ ui <- fluidPage(
 )
 ```
 
-Use the theme selector to try out different themes before committing to one.
+Or use the theme selector to try out different themes before committing to one.
+
 ```{r}
 # UI
 
