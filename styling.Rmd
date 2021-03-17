@@ -15,11 +15,15 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. You can always use CSS, but depending on what you're trying to accomplish, it may not be easy.
 
-```{r, echo=FALSE, eval = TRUE, out.width="80%", fig.cap="Working with CSS. We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell."}
+```{r, echo=FALSE, eval = TRUE, out.width="80%", fig.cap="We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell."}
 knitr::include_graphics("https://img.devrant.com/devrant/rant/r_236669_egRwe.gif")
 ```
 
-Part of the difficulty is that by default, Shiny utilizes Bootstrap--a CSS framework. Styles are already in place! `shinythemes` and `bslib` are a couple of packages to help override Bootstrap to customize the appearance of your app.
+<aside>
+Working with CSS. Sometimes things doesn't always happen where we want it to happen.  
+</aside>
+
+Part of the difficulty is that by default, Shiny utilizes Bootstrap--a CSS framework, so styles are already in place. To override Bootstrap and customize the appearance of your app, try the `shinythemes` or `bslib` package.
 
 # `shinythemes`
 
