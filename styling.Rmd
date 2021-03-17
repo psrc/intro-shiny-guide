@@ -1,7 +1,7 @@
 ---
 title: "Styling"
 description: |
-  bslib, shinythemes, and css in a nutshell
+  shinythemes, bslib, and CSS in a nutshell
 output: 
   distill::distill_article:
     toc: true
@@ -13,6 +13,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. You can always use CSS, but depending on what you're trying to accomplish, it may not be easy.
+
+```{r, echo=FALSE, eval = TRUE, out.width="80%", fig.cap="Working with CSS. We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell."}
+knitr::include_graphics("https://img.devrant.com/devrant/rant/r_236669_egRwe.gif")
+```
+
+Part of the difficulty is that by default, Shiny utilizes Bootstrap--a CSS framework. Styles are already in place! `shinythemes` and `bslib` are a couple of packages to help override Bootstrap to customize the appearance of your app.
+
 # `shinythemes`
 
 [shinythemes](https://rstudio.github.io/shinythemes/) is an easy alternative to the default bootstrap theme that is inherent in Shiny. Depending on the theme, it can change fonts, sizing, and color palettes.
@@ -21,7 +29,26 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 library(shinythemes)
 ```
 
-After loading the library, apply one of the shiny themes as seen here: https://rstudio.github.io/shinythemes/.
+After loading the library, use the theme selector to try out different themes before committing to one.
+
+```{r}
+# UI
+
+ui <- fluidPage(
+  
+  # test different shiny themes with the theme selector
+  themeSelector(),
+
+  
+  title,
+  src,
+  .
+  .
+  .
+)
+```
+
+Apply one of the shiny themes.
 
 ```{r}
 # UI
@@ -33,43 +60,61 @@ ui <- fluidPage(
   
   title,
   src,
-  
   .
   .
   .
 )
 ```
-
-Or use the theme selector to try out different themes before committing to one.
-
-```{r}
-# UI
-
-ui <- fluidPage(
-  
-  # test different shiny themes with the theme selector
-  themeSelector(),
-  
-  title,
-  src,
-  
-  .
-  .
-  .
-)
-```
-
 
 # `bslib`
 
+A recent package, [bslib](https://rstudio.github.io/bslib/index.html), was designed to [make it a little easier](https://rstudio.com/resources/rstudioconf-2020/styling-shiny-apps-with-sass-and-bootstrap-4/) to override Bootstrap settings. Unlike `shinythemes`, fonts and color can be set for different parts of the document.
+
+To find available Google Fonts see: [https://fonts.google.com/](https://fonts.google.com/)
+
+```{r}
+library(bslib)
+```
+
+```{r}
+#UI
+
+ui <- fluidPage(
+  
+  # use bslib's previewer
+  theme = bs_theme() %>% bs_theme_preview(),
+
+  title,
+  src,
+  .
+  .
+  .
+)
+```
+
+After testing, customize your theme by setting the arguments in `bs_theme()`.
+
+```{r}
+#UI
+
+ui <- fluidPage(
+  
+  # set the arguments
+  theme = bs_theme(primary = "#FF00F3", 
+                   heading_font = font_google("Pacifico"), 
+                   spacer = "2rem"),
+
+  title,
+  src,
+  .
+  .
+  .
+)
+  
+```
+
 
 # CSS
-
-CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. For anyone who has used extensive CSS, frustration is a common theme! 
-
-```{r, echo=FALSE, eval = TRUE, out.width="80%", fig.cap="Working with CSS. We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell."}
-knitr::include_graphics("https://img.devrant.com/devrant/rant/r_236669_egRwe.gif")
-```
 
 
 
