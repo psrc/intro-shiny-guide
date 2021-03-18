@@ -13,17 +13,17 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
-CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. You can always use CSS, but depending on what you're trying to accomplish, it may not be easy.
+CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. You can always use CSS to further customize the appearance of your app, but depending on what you're trying to accomplish, it may not be easy.
 
 ```{r, echo=FALSE, eval = TRUE, out.width="80%", fig.cap="We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell."}
 knitr::include_graphics("https://img.devrant.com/devrant/rant/r_236669_egRwe.gif")
 ```
 
 <aside>
-Working with CSS. Sometimes things doesn't always happen where we want it to happen.  
+Working with CSS. Sometimes things don't always happen where we want it to happen.  
 </aside>
 
-Part of the difficulty is that by default, Shiny utilizes Bootstrap--a CSS framework, so styles are already in place. To override Bootstrap and customize the appearance of your app, try the `shinythemes` or `bslib` package.
+Part of the difficulty is that by default, Shiny utilizes Bootstrap--a CSS framework, so styles are already in place when we create the UI. To override Bootstrap, try the `shinythemes` or `bslib` package before using CSS.
 
 # `shinythemes`
 
@@ -117,9 +117,65 @@ ui <- fluidPage(
   
 ```
 
+## rem
+
+In Bootstrap 4, rem units of measurement are the default. Unlike pixels, rem is a relative unit of measurement. It can scale relative to the default font size set by the user (on their browser or device). This makes rem units very useful for accessibility[^1].
+
+[^1]: https://www.sitepoint.com/understanding-and-using-rem-units-in-css/
 
 # CSS
 
+There are [several ways to apply custom CSS](https://shiny.rstudio.com/articles/css.html). One is by using a file based CSS. If there are a lot of CSS rules, centralizing it in its own `.css` file can be helpful.
+
+In the example below, we will increase the top and bottom margins around `textOutput('name_entered')`.
+
+```{r, echo=FALSE, eval = TRUE, out.width="60%"}
+knitr::include_graphics("images/css-margins.png")
+```
+
+A way to associate a particular CSS rule to an element of your UI is by using a class (a type of [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)). 
+
+Some R functions will allow an argument for a class name, and others like `textOutput()` doesn't. If so, wrap `div()` around the element and set the class name as an argument.
+
+```{r}
+# UI
+
+# apply a class name to the div wrapper
+txt_disp <- div(textOutput("name_entered"), class = 'buffer')
+
+```
+
+In the directory where your app file is, create a sub-directory called `www`.
+
+Create a new text file, with a `.css` extension and save with a file name of your choice inside `www`. 
+
+```{r}
+# CSS
+
+/* classes are referenced by . */
+.buffer {
+  margin: 1rem 0;
+}
+
+```
+
+Back in the UI, reference the newly created CSS file.
+
+```{r}
+# UI
+
+ui <- fluidPage(
+  
+  # link the CSS file to the app
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "stylesheet.css")
+  ),
+  .
+  .
+  .
+)
+
+```
 
 
 

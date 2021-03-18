@@ -14,7 +14,11 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 Start with file: `intro-shiny/babynames/00-anatomy/app-baby-00.R`
 
-A Shiny app generally consists of three parts: the **user interface** (UI), the **server**, and a place for **global** variables.
+A Shiny app generally consists of three parts: 
+
+1. the **user interface** (UI):  what the user sees in the browser and interacts with (input)
+2. the **server**: processes the user's input to create and send back for display (output)
+3. and a place for **global** variables: things that both the UI and server have access to
 
 # Global
 
@@ -25,7 +29,7 @@ library(shiny)
 library(tidyverse)
 library(here)
 
-df <- read_csv(here('data', 'babynames.csv'))
+df <- data.table::fread(here('data', 'babynames.csv')) %>% as_tibble()
 ```
 
 # UI & Server

@@ -2452,12 +2452,15 @@ Session Two
 <h3>Contents</h3>
 <ul>
 <li><a href="#shinythemes"><code>shinythemes</code></a></li>
-<li><a href="#bslib"><code>bslib</code></a></li>
+<li><a href="#bslib"><code>bslib</code></a>
+<ul>
+<li><a href="#rem">rem</a></li>
+</ul></li>
 <li><a href="#css">CSS</a></li>
 </ul>
 </nav>
 </div>
-<p>CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. You can always use CSS, but depending on what you’re trying to accomplish, it may not be easy.</p>
+<p>CSS (Cascading Style Sheets) is a language used for describing the style and layout of a document. You can always use CSS to further customize the appearance of your app, but depending on what you’re trying to accomplish, it may not be easy.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span id="fig:unnamed-chunk-1"></span>
 <img src="https://img.devrant.com/devrant/rant/r_236669_egRwe.gif" alt="We Bare Bears. https://devrant.com/rants/236669/css-in-a-nutshell." width="80%" />
@@ -2467,9 +2470,9 @@ Figure 1: We Bare Bears. <a href="https://devrant.com/rants/236669/css-in-a-nuts
 </div>
 </div>
 <aside>
-Working with CSS. Sometimes things doesn’t always happen where we want it to happen.
+Working with CSS. Sometimes things don’t always happen where we want it to happen.
 </aside>
-<p>Part of the difficulty is that by default, Shiny utilizes Bootstrap–a CSS framework, so styles are already in place. To override Bootstrap and customize the appearance of your app, try the <code>shinythemes</code> or <code>bslib</code> package.</p>
+<p>Part of the difficulty is that by default, Shiny utilizes Bootstrap–a CSS framework, so styles are already in place when we create the UI. To override Bootstrap, try the <code>shinythemes</code> or <code>bslib</code> package before using CSS.</p>
 <h1 id="shinythemes"><code>shinythemes</code></h1>
 <p><a href="https://rstudio.github.io/shinythemes/">shinythemes</a> is an easy alternative to the default bootstrap theme that is inherent in Shiny. Depending on the theme, it can change fonts, sizing, and color palettes.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2553,8 +2556,57 @@ Working with CSS. Sometimes things doesn’t always happen where we want it to h
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  .</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </div>
+<h2 id="rem">rem</h2>
+<p>In Bootstrap 4, rem units of measurement are the default. Unlike pixels, rem is a relative unit of measurement. It can scale relative to the default font size set by the user (on their browser or device). This makes rem units very useful for accessibility<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <h1 id="css">CSS</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>There are <a href="https://shiny.rstudio.com/articles/css.html">several ways to apply custom CSS</a>. One is by using a file based CSS. If there are a lot of CSS rules, centralizing it in its own <code>.css</code> file can be helpful.</p>
+<p>In the example below, we will increase the top and bottom margins around <code>textOutput('name_entered')</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/css-margins.png" width="60%" /></p>
+</div>
+<p>A way to associate a particular CSS rule to an element of your UI is by using a class (a type of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">CSS selector</a>).</p>
+<p>Some R functions will allow an argument for a class name, and others like <code>textOutput()</code> doesn’t. If so, wrap <code>div()</code> around the element and set the class name as an argument.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># UI</span>
+
+<span class='co'># apply a class name to the div wrapper</span>
+<span class='va'>txt_disp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>div</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/textOutput.html'>textOutput</a></span><span class='op'>(</span><span class='st'>"name_entered"</span><span class='op'>)</span>, class <span class='op'>=</span> <span class='st'>'buffer'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>In the directory where your app file is, create a sub-directory called <code>www</code>.</p>
+<p>Create a new text file, with a <code>.css</code> extension and save with a file name of your choice inside <code>www</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CSS</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="sc">/</span><span class="er">*</span> classes are referenced by . <span class="sc">*</span><span class="er">/</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>.buffer {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  margin<span class="sc">:</span> 1rem <span class="dv">0</span>;</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<p>Back in the UI, reference the newly created CSS file.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UI</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># link the CSS file to the app</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  tags<span class="sc">$</span><span class="fu">head</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">link</span>(<span class="at">rel =</span> <span class="st">&quot;stylesheet&quot;</span>, <span class="at">type =</span> <span class="st">&quot;text/css&quot;</span>, <span class="at">href =</span> <span class="st">&quot;stylesheet.css&quot;</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  .</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.sitepoint.com/understanding-and-using-rem-units-in-css/" class="uri">https://www.sitepoint.com/understanding-and-using-rem-units-in-css/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

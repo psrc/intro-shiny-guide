@@ -2461,7 +2461,12 @@ Session Two
 </nav>
 </div>
 <p>Start with file: <code>intro-shiny/babynames/00-anatomy/app-baby-00.R</code></p>
-<p>A Shiny app generally consists of three parts: the <strong>user interface</strong> (UI), the <strong>server</strong>, and a place for <strong>global</strong> variables.</p>
+<p>A Shiny app generally consists of three parts:</p>
+<ol type="1">
+<li>the <strong>user interface</strong> (UI): what the user sees in the browser and interacts with (input)</li>
+<li>the <strong>server</strong>: processes the user’s input to create and send back for display (output)</li>
+<li>and a place for <strong>global</strong> variables: things that both the UI and server have access to</li>
+</ol>
 <h1 id="global">Global</h1>
 <p>In a single file app, packages and global variables can be loaded at the top of the script.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2470,7 +2475,7 @@ Session Two
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span>
 
-<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>read_csv</span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data'</span>, <span class='st'>'babynames.csv'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://Rdatatable.gitlab.io/data.table/reference/fread.html'>fread</a></span><span class='op'>(</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data'</span>, <span class='st'>'babynames.csv'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
