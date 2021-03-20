@@ -129,7 +129,7 @@ There are [several ways to apply custom CSS](https://shiny.rstudio.com/articles/
 
 In the example below, we will increase the top and bottom margins around `textOutput('name_entered')`.
 
-```{r, echo=FALSE, eval = TRUE, out.width="60%"}
+```{r, echo=FALSE, eval = TRUE, out.width="50%"}
 knitr::include_graphics("images/css-margins.png")
 ```
 
@@ -147,7 +147,16 @@ txt_disp <- div(textOutput("name_entered"), class = 'buffer')
 
 In the directory where your app file is, create a sub-directory called `www`.
 
+```{r, echo=FALSE, eval = TRUE, out.width="30%"}
+knitr::include_graphics("images/css-www.png")
+```
+
 Create a new text file, with a `.css` extension and save with a file name of your choice inside `www`. 
+
+```{r, echo=FALSE, eval = TRUE, out.width="100%"}
+knitr::include_graphics("images/css-stylesheet.png")
+```
+
 
 ```{r}
 # CSS
@@ -158,6 +167,11 @@ Create a new text file, with a `.css` extension and save with a file name of you
 }
 
 ```
+<aside>
+The `margin` CSS property is a shortcut for margin-top, -right, -bottom, -left. 
+
+When only 2 values are provided, the first value is for top & bottom, while the second value is for left & right margins.
+</aside>
 
 Back in the UI, reference the newly created CSS file.
 

@@ -2562,7 +2562,7 @@ Working with CSS. Sometimes things don’t always happen where we want it to hap
 <p>There are <a href="https://shiny.rstudio.com/articles/css.html">several ways to apply custom CSS</a>. One is by using a file based CSS. If there are a lot of CSS rules, centralizing it in its own <code>.css</code> file can be helpful.</p>
 <p>In the example below, we will increase the top and bottom margins around <code>textOutput('name_entered')</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="images/css-margins.png" width="60%" /></p>
+<p><img src="images/css-margins.png" width="50%" /></p>
 </div>
 <p>A way to associate a particular CSS rule to an element of your UI is by using a class (a type of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors">CSS selector</a>).</p>
 <p>Some R functions will allow an argument for a class name, and others like <code>textOutput()</code> doesn’t. If so, wrap <code>div()</code> around the element and set the class name as an argument.</p>
@@ -2576,7 +2576,13 @@ Working with CSS. Sometimes things don’t always happen where we want it to hap
 </div>
 </div>
 <p>In the directory where your app file is, create a sub-directory called <code>www</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/css-www.png" width="30%" /></p>
+</div>
 <p>Create a new text file, with a <code>.css</code> extension and save with a file name of your choice inside <code>www</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/css-stylesheet.png" width="100%" /></p>
+</div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CSS</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2585,6 +2591,10 @@ Working with CSS. Sometimes things don’t always happen where we want it to hap
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  margin<span class="sc">:</span> 1rem <span class="dv">0</span>;</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
+<aside>
+<p>The <code>margin</code> CSS property is a shortcut for margin-top, -right, -bottom, -left.</p>
+When only 2 values are provided, the first value is for top &amp; bottom, while the second value is for left &amp; right margins.
+</aside>
 <p>Back in the UI, reference the newly created CSS file.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># UI</span></span>
