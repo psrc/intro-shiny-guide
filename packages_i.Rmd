@@ -96,7 +96,7 @@ Convert existing plot output and render functions to their respective Plotly equ
 
 ```
 
-# Tidy Evaluation
+# Extra: Tidy Evaluation
 
 Typically in `dplyr` functions, data-variables (a.k.a column names) are entered directly in the function without any extra syntax (`$` or quotation marks). Data-variables mapped in `ggplot2`’s `aes()` also follow the same concept.
 

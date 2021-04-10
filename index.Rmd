@@ -10,7 +10,7 @@ site: distill::distill_website
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 ```
-**Date**: TBD  
+**Dates**: April 27, 2021, May 4, 2021  
 **Instructor**: Christy Lam  
 **Assistants**: Hana Ševčíková, Craig Helmann, Suzanne Childress, Polina Butrina
 
