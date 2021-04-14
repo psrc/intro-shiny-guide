@@ -35,6 +35,8 @@ navbar:
           href: styling.html
         - text: "Multi-file Apps"
           href: multi_file.html
+        - text: "Deploy"
+          href: deploy.html
     - text: "Slides"
       href: slides.html
     - text: "Resources"
