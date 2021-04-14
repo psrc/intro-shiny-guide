@@ -15,7 +15,9 @@ Open the files inside `intro-shiny/babynames/06-multi-file`
 
 Single file apps have their benefits. If code length is minimal, then an `app.R` file is more than sufficient. However, content in a web app is more than likely to grow. An app using multiple files can help with code organization and readability. It can also make it easier to collaborate with others.
 
-There are variations to how multiple file apps are set up, but at the very least within your project folder you'll have two files:
+There are variations on how multiple file apps are set up. The number of files can vary and internally how the UI and server are constructed can be different across apps. 
+
+At the very least, your project folder will have two files:
 
 - ui.R
 - server.R
@@ -39,7 +41,7 @@ When debugging a multiple file app, use `browser()` instead of the standard way 
 2. Run the app. 
 3. In the example below, `browser()` is within an eventReactive(). Click on the 'go' button when the UI is available to activate the debugger. 
 
-Code up to `browser()` will execute. Objects (e.g. `df_sub`) be available in the Environment pane of the IDE.
+Code leading up to `browser()` will execute. Objects (e.g. `df_sub`) will be available in the Environment pane of the IDE.
 
 ```{r}
 # Server
@@ -55,7 +57,7 @@ Code up to `browser()` will execute. Objects (e.g. `df_sub`) be available in the
     })
 ```
 
-Because reactives are lazy and need to be called on to operate, be sure that the reactive context that `browser()` is in is called somewhere downstream (e.g. `render*()`).
+Because reactives are lazy and need to be called on to work, be sure that the reactive function that `browser()` is in is called somewhere downstream (e.g. `render*()`).
 
 ```{r}
 # Server

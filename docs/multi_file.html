@@ -2456,7 +2456,8 @@ Session Two
 </div>
 <p>Open the files inside <code>intro-shiny/babynames/06-multi-file</code></p>
 <p>Single file apps have their benefits. If code length is minimal, then an <code>app.R</code> file is more than sufficient. However, content in a web app is more than likely to grow. An app using multiple files can help with code organization and readability. It can also make it easier to collaborate with others.</p>
-<p>There are variations to how multiple file apps are set up, but at the very least within your project folder you’ll have two files:</p>
+<p>There are variations on how multiple file apps are set up. The number of files can vary and internally how the UI and server are constructed can be different across apps.</p>
+<p>At the very least, your project folder will have two files:</p>
 <ul>
 <li>ui.R</li>
 <li>server.R</li>
@@ -2475,7 +2476,7 @@ Session Two
 <li>Run the app.</li>
 <li>In the example below, <code>browser()</code> is within an eventReactive(). Click on the ‘go’ button when the UI is available to activate the debugger.</li>
 </ol>
-<p>Code up to <code>browser()</code> will execute. Objects (e.g. <code>df_sub</code>) be available in the Environment pane of the IDE.</p>
+<p>Code leading up to <code>browser()</code> will execute. Objects (e.g. <code>df_sub</code>) will be available in the Environment pane of the IDE.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
@@ -2492,7 +2493,7 @@ Session Two
 </code></pre>
 </div>
 </div>
-<p>Because reactives are lazy and need to be called on to operate, be sure that the reactive context that <code>browser()</code> is in is called somewhere downstream (e.g. <code>render*()</code>).</p>
+<p>Because reactives are lazy and need to be called on to work, be sure that the reactive function that <code>browser()</code> is in is called somewhere downstream (e.g. <code>render*()</code>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
