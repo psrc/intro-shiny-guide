@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 
 Shiny is a package that allows you to easily build interactive web applications. Web development skills aren't required--all you need is R! 
 
-In this two part module, we'll walk through how to get started, peek inside the anatomy of a Shiny app, and incorporate packages (from previous modules and introduce some new ones!) to build a polished product.
+In this two part module, we'll walk through how to get started, peek inside the anatomy of a Shiny app, and incorporate packages (from previous modules and introduce some new ones) to build a polished product.
 </div>
 
 

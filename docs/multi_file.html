@@ -84,27 +84,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Intro to Shiny</title>
+  <title>Intro to Shiny: Multiple File Apps</title>
 
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Intro to Shiny"/>
+  <meta property="og:title" content="Intro to Shiny: Multiple File Apps"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Intro to Shiny"/>
+  <meta property="twitter:title" content="Intro to Shiny: Multiple File Apps"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","site"]}},"value":[{"type":"character","attributes":{},"value":["Intro to Shiny"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc"]}},"value":[{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Multiple File Apps"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2383,7 +2383,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Intro to Shiny","authors":[]}
+{"title":"Multiple File Apps","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2436,7 +2436,7 @@ Session Two
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Intro to Shiny</h1>
+<h1>Multiple File Apps</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2444,46 +2444,76 @@ Session Two
 
 
 <div class="d-article">
-<p><strong>Dates</strong>: April 27, 2021, May 4, 2021<br />
-<strong>Instructor</strong>: Christy Lam<br />
-<strong>Assistants</strong>: Hana Ševčíková, Craig Helmann, Suzanne Childress, Polina Butrina</p>
-<div>
-<div class="intro-logo">
-<p><img src="https://raw.githubusercontent.com/rstudio/hex-stickers/master/thumbs/shiny.png" /></p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#sourcing-files">Sourcing Files</a></li>
+<li><a href="#debugging">Debugging</a></li>
+</ul>
+</nav>
 </div>
-<p>Shiny is a package that allows you to easily build interactive web applications. Web development skills aren’t required–all you need is R!</p>
-<p>In this two part module, we’ll walk through how to get started, peek inside the anatomy of a Shiny app, and incorporate packages (from previous modules and introduce some new ones) to build a polished product.</p>
+<p>Open the files inside <code>intro-shiny/babynames/06-multi-file</code></p>
+<p>Single file apps have their benefits. If code length is minimal, then an <code>app.R</code> file is more than sufficient. However, content in a web app is more than likely to grow. An app using multiple files can help with code organization and readability. It can also make it easier to collaborate with others.</p>
+<p>There are variations to how multiple file apps are set up, but at the very least within your project folder you’ll have two files:</p>
+<ul>
+<li>ui.R</li>
+<li>server.R</li>
+<li>global.R (optional)</li>
+</ul>
+<p>The <code>global.R</code> file is optional. The advantage of including it is to provide a clear central area to call packages and set global variables.</p>
+<h1 id="sourcing-files">Sourcing Files</h1>
+<p>There’s no limit to how many files you can use for your app. Use <code>source()</code> to read in another R file.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/mf-source.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Session One</th>
-<th style="text-align: left;">Session Two</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Getting Started</td>
-<td style="text-align: left;">Packages II</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Anatomy, Inputs &amp; Outputs</td>
-<td style="text-align: left;">Styling</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Layout</td>
-<td style="text-align: left;">Multi-file apps</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Reactivity</td>
-<td style="text-align: left;">Deploy</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Packages I</td>
-<td style="text-align: left;">Shiny Cousins and Friends</td>
-</tr>
-</tbody>
-</table>
+<h1 id="debugging">Debugging</h1>
+<p>When debugging a multiple file app, use <code>browser()</code> instead of the standard way of setting the breakpoint.</p>
+<ol type="1">
+<li>Set <code>browser()</code> inside a reactive context.</li>
+<li>Run the app.</li>
+<li>In the example below, <code>browser()</code> is within an eventReactive(). Click on the ‘go’ button when the UI is available to activate the debugger.</li>
+</ol>
+<p>Code up to <code>browser()</code> will execute. Objects (e.g. <code>df_sub</code>) be available in the Environment pane of the IDE.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+
+ <span class='co'># change reactive to an eventReactive. Delay reaction until action button is clicked</span>
+    <span class='co'># allow filtering of multiple states</span>
+    <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+        <span class='va'>df_sub</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>[</span><span class='va'>name</span> <span class='op'>%chin%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%chin%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>]</span>
+        
+        <span class='fu'><a href='https://rdrr.io/r/base/browser.html'>browser</a></span><span class='op'>(</span><span class='op'>)</span>
+        
+        <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>df_sub</span><span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Because reactives are lazy and need to be called on to operate, be sure that the reactive context that <code>browser()</code> is in is called somewhere downstream (e.g. <code>render*()</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Server</span>
+
+  <span class='va'>filtered_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>eventReactive</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>go</span>, <span class='op'>{</span>
+      <span class='va'>df_sub</span> <span class='op'>&lt;-</span> <span class='va'>df</span><span class='op'>[</span><span class='va'>name</span> <span class='op'>%chin%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>name</span> <span class='op'>&amp;</span> <span class='va'>state</span> <span class='op'>%chin%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>state</span><span class='op'>]</span>
+      
+      <span class='fu'><a href='https://rdrr.io/r/base/browser.html'>browser</a></span><span class='op'>(</span><span class='op'>)</span>
+      
+      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>df_sub</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>main_table</span> <span class='op'>&lt;-</span> <span class='fu'>renderDT</span><span class='op'>(</span><span class='op'>{</span>
+    
+    <span class='fu'>filtered_df</span><span class='op'>(</span><span class='op'>)</span>
+    <span class='va'>.</span>
+    <span class='va'>.</span>
+    <span class='va'>.</span>
+  <span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
