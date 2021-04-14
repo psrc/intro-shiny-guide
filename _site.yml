@@ -33,6 +33,8 @@ navbar:
           href: packages_ii.html
         - text: "Styling"
           href: styling.html
+        - text: "Multi-file Apps"
+          href: multi_file.html
     - text: "Slides"
       href: slides.html
     - text: "Resources"
