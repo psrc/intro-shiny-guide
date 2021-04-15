@@ -86,7 +86,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Deploy</title>
 
-  <meta property="description" itemprop="description" content="Release your app to the world 🌍"/>
+  <meta property="description" itemprop="description" content="Release your app to the world 🌏 🎉"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
@@ -94,20 +94,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Deploy"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Release your app to the world 🌍"/>
+  <meta property="og:description" content="Release your app to the world 🌏 🎉"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Deploy"/>
-  <meta property="twitter:description" content="Release your app to the world 🌍"/>
+  <meta property="twitter:description" content="Release your app to the world 🌏 🎉"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Deploy"]},{"type":"character","attributes":{},"value":["Release your app to the world 🌍\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Deploy"]},{"type":"character","attributes":{},"value":["Release your app to the world 🌏 🎉\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2386,7 +2386,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Deploy","description":"Release your app to the world 🌍","authors":[]}
+{"title":"Deploy","description":"Release your app to the world 🌏 🎉","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2444,7 +2444,7 @@ Session Two
 <h1>Deploy</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Release your app to the world 🌍</p></p>
+<p><p>Release your app to the world 🌏 🎉</p></p>
 </div>
 
 
@@ -2473,19 +2473,19 @@ The Shiny server lives on a linux server
 </div>
 <p>Before the Shiny server deploys your app:</p>
 <ol type="1">
-<li><p>Your app files must be on <strong>GitHub</strong>. Ideally your app project should be in its own GitHub repo, e.g.:</p>
+<li><p>Your app files must be on <a href="https://github.com/psrc"><strong>GitHub</strong></a>. Ideally your app project should be in its own GitHub repo, e.g.:</p>
 <ul>
 <li><a href="https://github.com/psrc/baseyear2018explorer" class="uri">https://github.com/psrc/baseyear2018explorer</a></li>
 <li><a href="https://github.com/psrc/travel-study-stories" class="uri">https://github.com/psrc/travel-study-stories</a></li>
 </ul></li>
-<li><p>You will eventually use bash commands to access and navigate the linux server. Hana, Craig, or Christy can help setup your app in the server, but it’s always good to know where your app lives and how to restart your app inside the Shiny server:</p>
+<li><p>Learn some Bash commands to access and navigate the linux server. Hana, Craig, or Christy can help setup your app in the server, but it’s always good to know where your app lives and how to restart your app inside the Shiny server:</p>
 <ul>
 <li><a href="http://aws-linux/mediawiki/index.php/Shiny_Server" class="uri">http://aws-linux/mediawiki/index.php/Shiny_Server</a></li>
 </ul></li>
 </ol>
 <h1 id="shinyapps.io">Shinyapps.io</h1>
-<p>For personal, non-PSRC related projects, there is the option of <a href="https://www.shinyapps.io/">shinyapps.io</a>. RStudio can host your Shiny app. You can deploy for free but with limits to the number of apps deployed, hours, and resources.</p>
-<p>After you login, shinyapps.io provides instructions to deploy your first app which will look similar to the code below:</p>
+<p>For personal, non-PSRC related projects, there is the option of <a href="https://www.shinyapps.io/">shinyapps.io</a>. RStudio can host your Shiny app. You can publish for free but there are limits to the number of apps that can be deployed, hours used, and resources.</p>
+<p>After you first login, shinyapps.io provides instructions to deploy your first app. It will look similar to the code below:</p>
 <p>In the console of the RStudio IDE:</p>
 <ol type="1">
 <li>Have the <code>rsconnect</code> package installed and loaded.</li>
@@ -2493,22 +2493,22 @@ The Shiny server lives on a linux server
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>'rsconnect'</span><span class='op'>)</span>
-
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/rstudio/rsconnect'>rsconnect</a></span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <ol start="2" type="1">
-<li>Set the account information (which you can find in your shinyapps.io account under Tokens)</li>
+<li>Set the account information.</li>
 </ol>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/rsconnect/man/setAccountInfo.html'>setAccountInfo</a></span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>' '</span>,
-              token<span class='op'>=</span><span class='st'>' '</span>,
-              secret<span class='op'>=</span><span class='st'>' '</span><span class='op'>)</span>
+               token<span class='op'>=</span><span class='st'>' '</span>,
+               secret<span class='op'>=</span><span class='st'>' '</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
+<p>You can find your account information on the front page of your shinyapps.io account before your first app is published or under <code>Account &gt; Tokens</code></p>
 <ol start="3" type="1">
 <li>Deploy your app</li>
 </ol>
@@ -2522,7 +2522,7 @@ The Shiny server lives on a linux server
 <p>If you have more than one account with shinyapps.io:</p>
 <ul>
 <li>Include the <code>account</code> argument in <code>deployApp()</code>.</li>
-<li>You may also have to tell RStudio which account to connect to in <code>Tools &gt; Global Options &gt; Publishing</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>You may also have to tell the RStudio IDE which account to connect to in <code>Tools &gt; Global Options &gt; Publishing</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 </ul>
 <h2 id="other-notes">Other Notes</h2>
 <p>If you removed an app from your shinyapps.io account and are attempting to re-publish again, double check your local project folder and remove the rsconnect sub-folder if it exists.</p>
