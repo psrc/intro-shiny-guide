@@ -29,7 +29,11 @@ Script templates and intermediate scripts prepared for this module can be forked
 
 ## DT
 
+[DT](https://rstudio.github.io/DT/) is an R adaptation of the JavaScript library [DataTables](https://datatables.net/). It generates an HTML table with advanced features such as filtering, pagination, sorting, and many others.
+
 ### Other htmlwidgets
+
+DT like Plotly and Leaflet are part of the [htmlwidgets family](https://www.htmlwidgets.org/showcase_leaflet.html), an effort to bring the best of JavaScript visualization into R to create interactive visualizations. `htmlwidgets` itself is a package for developers to bind various JS packages to R.
 
 ## Reactable
 
