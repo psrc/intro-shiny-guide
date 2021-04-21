@@ -2467,7 +2467,8 @@ Session Two
 </div>
 <p>R and the RStudio IDE are required. See the first module on <a href="https://psrc.github.io/r-basics-I/00-index.html">R Basics</a> for guidance.</p>
 <h1 id="session-files-on-local-drive">Session Files on Local Drive</h1>
-<p>Make sure that the directory of files for the sessions are copied onto your local drive. If they are on PSRC’s network, you may experience extreme sluggishness when using a <code>.Rproj</code> file.</p>
+<p>Copy the folder <code>T:\2021April\intro-shiny</code> onto a place of your choice on the C drive.</p>
+<p>Make sure that the directory of files for the sessions are <strong>copied onto your local drive</strong>. If they are on PSRC’s network, you may experience extreme sluggishness when using a <code>.Rproj</code> file.</p>
 <h2 id="open-.rproj">Open .Rproj</h2>
 <p>In the RStudio IDE, open the <code>intro-shiny.Rproj</code> file. Project files will automatically set our working directory–in this case, the root of the <code>intro-shiny</code> directory. No need for <code>setwd()</code> and dealing with file paths!</p>
 <p><img src="images/rproj.png" /></p>
@@ -2488,8 +2489,8 @@ Some may have already been installed from previous modules. You can adapt the co
 </aside>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"shiny"</span>, <span class='st'>"shinythemes"</span>, <span class='st'>"DT"</span>, <span class='st'>"here"</span>, <span class='st'>"rsconnect"</span>, 
-                   <span class='st'>"tidyverse"</span>, <span class='st'>"scales"</span>, <span class='st'>"plotly"</span>, <span class='st'>"data.table"</span>, <span class='st'>"sf"</span>, <span class='st'>"leaflet"</span><span class='op'>)</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"shiny"</span>, <span class='st'>"shinythemes"</span>, <span class='st'>"bslib"</span>, <span class='st'>"DT"</span>, <span class='st'>"here"</span>, <span class='st'>"rsconnect"</span>, 
+                   <span class='st'>"tidyverse"</span>, <span class='st'>"scales"</span>, <span class='st'>"plotly"</span>, <span class='st'>"data.table"</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
@@ -2528,7 +2529,7 @@ This feature is available in RStudio version 1.4 and above.
 </aside>
 <h2 id="multiple-source-columns">Multiple Source columns</h2>
 <div>
-<p>Activate multiple Source columns. When working with a multi-page app, having 2 or more files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.</p>
+<p>Activate multiple Source columns (if your screen is wide enough). When working with a multi-page app, having 2 or more files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.</p>
 <p>Click on the pane icon <img src="images/panel-layout-icon.png" />. <code>Pane Layout... &gt; Add Column</code><br />
 <img src="images/add-column.png" /></p>
 </div>

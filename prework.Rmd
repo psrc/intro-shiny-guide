@@ -14,7 +14,9 @@ R and the RStudio IDE are required. See the first module on [R Basics](https://p
 
 # Session Files on Local Drive
 
-Make sure that the directory of files for the sessions are copied onto your local drive. If they are on PSRC's network, you may experience extreme sluggishness when using a `.Rproj` file.
+Copy the folder `T:\2021April\intro-shiny` onto a place of your choice on the C drive.
+
+Make sure that the directory of files for the sessions are **copied onto your local drive**. If they are on PSRC's network, you may experience extreme sluggishness when using a `.Rproj` file.
 
 ## Open .Rproj
 
@@ -45,8 +47,8 @@ Some may have already been installed from previous modules. You can adapt the co
 </aside>
 
 ```{r}
-install.packages(c("shiny", "shinythemes", "DT", "here", "rsconnect", 
-                   "tidyverse", "scales", "plotly", "data.table", "sf", "leaflet"))
+install.packages(c("shiny", "shinythemes", "bslib", "DT", "here", "rsconnect", 
+                   "tidyverse", "scales", "plotly", "data.table"))
 ```
 
 # Test
@@ -89,7 +91,7 @@ This feature is available in RStudio version 1.4 and above.
 
 ## Multiple Source columns
 <div>
-Activate multiple Source columns. When working with a multi-page app, having 2 or more files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
+Activate multiple Source columns (if your screen is wide enough). When working with a multi-page app, having 2 or more files opened side-by-side might be more ergonomic. After adding additional columns, you can open scripts and drag and drop them in either column.
 
 Click on the pane icon ![](images/panel-layout-icon.png). `Pane Layout... > Add Column`  
 ![](images/add-column.png)
