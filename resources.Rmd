@@ -25,6 +25,9 @@ Script templates and intermediate scripts prepared for this module can be forked
 
 **[Mastering Shiny Book](https://mastering-shiny.org/index.html)**: A book (in progress) by Hadley Wickham. See the *Getting Started* section. For those who use the tidyverse, it also includes a section on the latest version of *tidy evaluation*--essential for programming with packages like dplyr or ggplot2.
 
+**[Datacamp: Building Web Applications with Shiny in R](https://learn.datacamp.com/courses/building-web-applications-with-shiny-in-r)**: 4 hours of Shiny instruction and hands-on activity. Go more in-depth with reactivity and learn how to use the `isolate()` function. Courses on Shinydashboard and Flexdashboard are also available via Datacamp.
+
+
 # Visualization Packages
 
 ## DT
