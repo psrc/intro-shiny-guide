@@ -75,6 +75,20 @@ if (interactive()) {
 }
 ```
 
+# Note on Files
+
+The sub-directory `babynames` contains starting and intermediate app files. These files are organized by sections. 
+
+At various points, starting files will be opened and we will add code to them. Starting files include:
+
+- 00-anatomy/app-baby-00.R
+- 01-layout/app-baby-01.R
+- 04-packages-02/app-baby-04.R
+
+Intermediate files are available in the event that the code-along goes awry. Each intermediate file is a working example of a sub-topic within a section. You can view the code and run it without additional code. The end of a file name for an intermediate file should describe the sub-topic.
+
+![](images/pre-work-directories.png)
+
 # Optional
 
 ## Rainbow Parenthesis
