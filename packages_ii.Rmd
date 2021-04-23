@@ -18,7 +18,7 @@ Allow users to sort or filter your tables without having to expand the UI. Simpl
 
 # DT
 
-DT stands for data table (not to be confused with the wrangling/processing package `data.table`). Like, `Plotly`, DT is part of the [htmlwidgets](https://www.htmlwidgets.org/) family. Developers have taken the JavaScript version of DT and bound it with R. We don't have to learn JS in order to experience its benefits!
+DT stands for DataTables (not to be confused with the wrangling/processing package `data.table`). Like, `Plotly`, DT is part of the [htmlwidgets](https://www.htmlwidgets.org/) family. Developers have taken the JavaScript version of DT and bound it with R. We don't have to learn JS in order to experience its benefits!
 
 ```{r}
 # Load package

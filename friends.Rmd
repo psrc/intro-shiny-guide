@@ -1,0 +1,21 @@
+---
+title: "Shiny Cousins and Friends"
+description: |
+  Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard
+output: 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+```
+
+Shiny provides all the tools needed to create a customized UI. A common UI design amongst Shiny apps is the dashboard layout (think mosaic of information). 
+
+
+
+
+
