@@ -37,6 +37,8 @@ navbar:
           href: multi_file.html
         - text: "Deploy"
           href: deploy.html
+        - text: "Shiny Cousins and Friends"
+          href: friends.html
     - text: "Slides"
       href: slides.html
     - text: "Resources"

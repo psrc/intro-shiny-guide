@@ -86,7 +86,6 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--radix_placeholder_meta_tags-->
   <title>Intro to Shiny: Shiny Cousins and Friends</title>
 
-  <meta property="description" itemprop="description" content="Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="images/favicon.ico"/>
 
@@ -94,20 +93,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Intro to Shiny: Shiny Cousins and Friends"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Intro to Shiny"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Intro to Shiny: Shiny Cousins and Friends"/>
-  <meta property="twitter:description" content="Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Shiny Cousins and Friends"]},{"type":"character","attributes":{},"value":["Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard\n"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Shiny Cousins and Friends"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[4]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2386,7 +2383,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Shiny Cousins and Friends","description":"Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard","authors":[]}
+{"title":"Shiny Cousins and Friends","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2428,6 +2425,7 @@ Session Two
 <a href="styling.html">Styling</a>
 <a href="multi_file.html">Multi-file Apps</a>
 <a href="deploy.html">Deploy</a>
+<a href="friends.html">Shiny Cousins and Friends</a>
 </div>
 </div>
 <a href="slides.html">Slides</a>
@@ -2444,12 +2442,44 @@ Session Two
 <h1>Shiny Cousins and Friends</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Shiny add-ons and the difference between Shiny, Shinydashboard, and Flexdashboard</p></p>
+
 </div>
 
 
 <div class="d-article">
-<p>Shiny provides all the tools needed to create a customized UI. A common UI design amongst Shiny apps is the dashboard layout (think mosaic of information).</p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#the-shiny-verse">The Shiny-verse</a>
+<ul>
+<li><a href="#shiny">Shiny</a></li>
+<li><a href="#shinydashboard">Shinydashboard</a></li>
+<li><a href="#flexdashboard">Flexdashboard</a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<h1 id="the-shiny-verse">The Shiny-verse</h1>
+<p>As you explore more of what Shiny has to offer, you may run across other packages that are a derivative of Shiny such as <code>Shinydashboard</code> and <code>Flexdashboard</code>, which may leave you wondering, what’s the difference between Shiny and these off-shoot packages?</p>
+<h2 id="shiny">Shiny</h2>
+<p>Shiny, being the original package, has a lot of the infrastructure and pieces needed to create a customized app. Shiny can implement any layout and requires a server behind it to run R code.</p>
+<h2 id="shinydashboard">Shinydashboard</h2>
+<p>A common UI design among Shiny apps is the dashboard–a layout providing an at-a-glace view of information. <a href="https://rstudio.github.io/shinydashboard/">Shinydashboard</a> was created to make it easier to create a dashboard that worked on top of Shiny.</p>
+<p><code>Shinydashboard</code> also has unique widgets of its own that give it a more ‘classic’ dashboard look. It includes a variety of boxes (display, info, and value) to embed and comprises a header, sidebar, and body.</p>
+<p>Since it requires Shiny, running a Shinydashboard will require a server.</p>
+<p><img src="images/shinydashboard.png" /></p>
+<h2 id="flexdashboard">Flexdashboard</h2>
+<p><a href="https://rmarkdown.rstudio.com/flexdashboard/">Flexdashboard</a> is another package to easily create dashboards but there are a couple of things that set it apart from <code>shinydashboard</code>.</p>
+<ul>
+<li>It uses .Rmd files instead of .R files.</li>
+<li>It can be a static dashboard (standard web page) or</li>
+<li>a dynamic (interactive) document with Shiny and a server.</li>
+</ul>
+<aside>
+If your dashboard is text-heavy, then Flexdashboard may be more helpful in that regard because it utilizes an RMarkdown file.
+</aside>
+<p><img src="images/flexdashboard.png" /></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
