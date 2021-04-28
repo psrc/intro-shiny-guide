@@ -28,12 +28,12 @@ In this two part module, we'll walk through how to get started, peek inside the 
 
 |Session One | Session Two|
 |:------------|:------------|
-|Getting Started| Packages II|
-|Anatomy, Inputs & Outputs | Styling |
-|Layout| Multi-file apps |
-|Reactivity| Deploy |
-|Packages I | Shiny Cousins and Friends|
-
+|Getting Started| Reactivity - Delaying Reactions |
+|Anatomy, Inputs & Outputs | Packages I & II |
+|Layout| Styling |
+|Reactivity| Multi-file apps |
+| | Deploy|
+| | Shiny Cousins and Friends|
 
 
 
