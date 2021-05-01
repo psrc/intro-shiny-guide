@@ -135,6 +135,10 @@ knitr::include_graphics("images/css-margins.png")
 
 A way to associate a particular CSS rule to an element of your UI is by using a class (a type of [CSS selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)). 
 
+<aside>
+Learn about different CSS Selectors through a fun game: [CSS Diner](https://flukeout.github.io/)
+</aside>
+
 Some R functions will allow an argument for a class name, and others like `textOutput()` doesn't. If so, wrap `div()` around the element and set the class name as an argument.
 
 ```{r}
