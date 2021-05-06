@@ -13,6 +13,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
 ```
 
+Before deploying, ensure that a single-file app is called `app.R` and with multiple file apps, make sure that `ui.R` and `server.R` are present. A Shiny server will rely on these standardized file names in order to deploy properly.
+
 # PSRC Shiny Server
 
 PSRC related apps can be hosted in-house on our very own Shiny server. Apps currently deployed from the PSRC Shiny server can be found here (VPN required): 
