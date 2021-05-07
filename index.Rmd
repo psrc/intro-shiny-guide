@@ -33,7 +33,7 @@ In this two part module, we'll walk through how to get started, peek inside the 
 |Layout| Styling |
 |Reactivity| Multi-file apps |
 | | Deploy|
-| | Shiny Cousins and Friends|
+| [Recording (VPN required)](https://aws-linux/rworkshop2020/recordings/intro-shiny-2021-04-27/zoom_0.mp4)| |
 
 
 

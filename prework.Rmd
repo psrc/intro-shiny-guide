@@ -14,7 +14,7 @@ R and the RStudio IDE are required. See the first module on [R Basics](https://p
 
 # Session Files on Local Drive
 
-Copy the folder `T:\2021April\intro-shiny` onto a place of your choice on the C drive.
+Copy the folder `T:\2021May\intro-shiny` onto a place of your choice on the C drive.
 
 Make sure that the directory of files for the sessions are **copied onto your local drive**. If they are on PSRC's network, you may experience extreme sluggishness when using a `.Rproj` file.
 
