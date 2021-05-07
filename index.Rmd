@@ -8,6 +8,7 @@ site: distill::distill_website
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
+library(fontawesome)
 
 ```
 **Dates**: April 27, 2021, May 11, 2021  
@@ -28,12 +29,12 @@ In this two part module, we'll walk through how to get started, peek inside the 
 
 |Session One | Session Two|
 |:------------|:------------|
-|Getting Started| Reactivity - Delaying Reactions |
-|Anatomy, Inputs & Outputs | Packages I & II |
-|Layout| Styling |
-|Reactivity| Multi-file apps |
-| | Deploy|
-| [Recording (VPN required)](https://aws-linux/rworkshop2020/recordings/intro-shiny-2021-04-27/zoom_0.mp4)| |
+|`r fa("far fa-play-circle")` Getting Started| `r fa("far fa-stop-circle")` Reactivity - Delaying Reactions |
+|`r fa("fas fa-child")` Anatomy, Inputs & Outputs | `r fa("fas fa-box-open")` Packages I & II |
+|`r fa("fas fa-border-style")` Layout| `r fa("fas fa-cut")` Styling |
+|`r fa("fas fa-cogs")` Reactivity| `r fa("far fa-clone")` Multi-file apps |
+| | `r fa("fas fa-rocket")` Deploy|
+|`r fa("fas fa-video")` [Recording (VPN required)](https://aws-linux/rworkshop2020/recordings/intro-shiny-2021-04-27/zoom_0.mp4)| |
 
 
 
