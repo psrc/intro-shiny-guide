@@ -34,7 +34,7 @@ In this two part module, we'll walk through how to get started, peek inside the 
 |`r fa("fas fa-border-style")` Layout| `r fa("fas fa-cut")` Styling |
 |`r fa("fas fa-cogs")` Reactivity| `r fa("far fa-clone")` Multi-file apps |
 | | `r fa("fas fa-rocket")` Deploy|
-|`r fa("fas fa-video")` [Recording (VPN required)](https://aws-linux/rworkshop2020/recordings/intro-shiny-2021-04-27/zoom_0.mp4)| |
+|`r fa("fas fa-video")` [Recording I (VPN required)](https://aws-linux/rworkshop2020/recordings/intro-shiny-2021-04-27/zoom_0.mp4)| `r fa("fas fa-video")` [Recording II (VPN required)](https://aws-linux/rworkshop2020/recordings/intro-shiny-II-2021-05-11/zoom_0.mp4) |
 
 
 
